@@ -6,7 +6,9 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('group');
+  this.route('groups', {resetNamespace: true}, function() {
+    this.route('group', {resetNamespace: true, path: '/:group_hash'});
+  });
 });
 
 export default Router;
