@@ -16,6 +16,8 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      HASHIDS_SALT: 'mSwyDdV6Ml4BNvmsM9TK',
+      HAHSIDS_MIN_LENGTH: 11
     },
 
     apiHost: 'http://localhost:8080',

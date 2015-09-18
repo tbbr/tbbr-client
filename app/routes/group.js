@@ -1,8 +1,13 @@
 import Ember from 'ember';
+import config from '../config/environment';
+/* global Hashids */
 
 export default Ember.Route.extend({
   model: function(params) {
-    return this.store.find('group', params.group_hash);
+    let hashids = new Hashids(config.APP.HASHIDS_SALT, config.APP.HAHSIDS_MIN_LENGTH);
+    let num = hashids.decode(params.hashId)[0];
+
+    return this.store.find('group', num);
   },
   setupController(controller, model) {
     controller.set('model', model);
