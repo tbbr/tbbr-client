@@ -1,3 +1,8 @@
-<h2 id="title">Welcome to Ember</h2>
+{{site-header}}
 
-{{outlet}}
+<div class="container">
+  {{side-bar groups=model}}
+  <article class="main-content">
+    {{outlet}}
+  </article>
+</div>

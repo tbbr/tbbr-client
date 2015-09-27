@@ -1,4 +1,7 @@
 <button {{action 'post'}}>Test</button>
 
+<h1>{{model.name}}</h1>
 
-<group-create />
+{{#each model.users as |user|}}
+  <li>{{user.name}}</li>
+{{/each}}

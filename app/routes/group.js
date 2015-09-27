@@ -7,7 +7,7 @@ export default Ember.Route.extend({
     let hashids = new Hashids(config.APP.HASHIDS_SALT, config.APP.HAHSIDS_MIN_LENGTH);
     let num = hashids.decode(params.hashId)[0];
 
-    return this.store.find('group', num);
+    return this.store.findRecord('group', num, {reload: true});
   },
   setupController(controller, model) {
     controller.set('model', model);

@@ -1,9 +1,40 @@
 /* global require, module */
+var env = process.env.EMBER_ENV;
+var isProductionLikeENV = ['production', 'staging'].indexOf(env) > -1;
+var envConfig = require('./config/environment')(env);
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    // Add options here
+    storeConfigInMeta: false,
+    tests: !isProductionLikeENV,
+    hinting: !isProductionLikeENV,
+    sourcemaps: {
+      enabled: !isProductionLikeENV
+    },
+    minifyJS: {
+      enabled: isProductionLikeENV
+    },
+    minifyCSS: {
+      enabled: isProductionLikeENV
+    },
+    minifyHTML: {
+      enabled: isProductionLikeENV
+    },
+    fingerprint: {
+      enabled: isProductionLikeENV,
+      extensions: ['js', 'css', 'png', 'jpg', 'gif', 'svg', 'woff', 'ttf', 'eot'],
+      exclude: ['apple-touch-icon', 'ms-tile'],
+      prepend: envConfig.assetHost
+    },
+  });
+
+  app.import({
+    development : 'bower_components/ember-data/ember-data.js',
+    staging     : 'bower_components/ember-data/ember-data.prod.js',
+    production  : 'bower_components/ember-data/ember-data.prod.js'
+  }, {
+    exports: { 'ember-data': [ 'default' ] }
   });
 
   // Use `app.import` to add additional libraries to the generated
