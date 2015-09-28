@@ -12,6 +12,41 @@ $darkerColor: #041F37;
 $lightColor: #496B89;
 $lighterColor: #718CA4;
 
+// Primary Color
+$primaryBase: #98D31C;
+$primaryLight: #AEDF46;
+$primaryLighter: #C8F171;
+$primaryDark: #75A70D;
+$primaryDarker: #598300;
+
+// Secondary Color
+$secondaryBase: #2F2F2F;
+$secondaryLight: #3B3B3B;
+$secondaryLighter: #4C4C4C;
+$secondaryDark: #222222;
+$secondaryDarker: #040404;
+
+$grey900: #212121;
+$grey800: #424242;
+$grey700: #616161;
+$grey600: #757575;
+$grey500: #9E9E9E;
+$grey400: #BDBDBD;
+$grey300: #E0E0E0;
+$grey200: #EEEEEE;
+$grey100: #F5F5F5;
+$grey50 : #FAFAFA;
+
+$baseFontColor: $grey400;
+$baseFontSize: 14px;
+
+$linkColor: $grey100;
+
 // Layout
 $containerWidth: 960px;
 $sideBarWidth: 320px;
+
+// Image Sizes
+$imgSm: 20px;
+$imgMed: 50px;
+$imgLrg: 80px;

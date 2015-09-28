@@ -1,0 +1,36 @@
+& {
+  display: flex;
+  position: relative;
+  height: 70px;
+  border-bottom: 1px solid $secondaryLight;
+  .media {
+    height: $imgMed;
+    width: $imgMed;
+    margin: 10px;
+    border-radius: 3px;
+  }
+  .content {
+    margin: 5px 0;
+    .name {
+      display: block;
+      font-size: $baseFontSize + 5px;
+      height: 30px;
+      line-height: 30px;
+
+      a.active {
+        color: $primaryBase;
+      }
+    }
+    .user-list {
+      li {
+        display: inline-block;
+      }
+      .user-avatar {
+        display: inline-block;
+        height: $imgSm;
+        width: $imgSm;
+        border-radius: 3px;
+      }
+    }
+  }
+}
