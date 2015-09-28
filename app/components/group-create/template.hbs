@@ -1,7 +1,10 @@
-<div>
-  {{input type="text" value=name}}
+<div class="form-control">
+  {{input type="text" value=name placeholder="Group Name"}}
 </div>
 
-<div>
-  {{input type="text" value=name}}
+<div class="form-control">
+  {{input type="text" value=description placeholder="Group Description"}}
 </div>
+
+<button type="button" class="btn btn--primary" {{action "createGroup"}}>Create Group</button>
+<button type="button" class="btn" {{action "cancelCreateAction"}}>Cancel</button>

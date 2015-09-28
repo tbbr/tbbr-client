@@ -1,7 +1,13 @@
-<h2>Groups</h2>
-
 <ul>
   {{#each groups as |group|}}
     <li>{{group-card group=group}}</li>
   {{/each}}
 </ul>
+
+<div class="fixed-bottom">
+  {{#if isCreatingGroup}}
+    {{group-create cancelCreateAction="toggleCreatingGroup"}}
+  {{else}}
+    <button type="button" class="btn" {{action "toggleCreatingGroup"}}>Create Group</button>
+  {{/if}}
+</div>

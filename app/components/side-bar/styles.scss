@@ -1,10 +1,22 @@
 & {
   position: relative;
     left: 0;
+    z-index: 500;
   width: $sideBarWidth;
   height: 100%;
   min-width: $sideBarWidth;
   background-color: $secondaryBase;
   padding: 10px;
+  text-align: center;
+  box-shadow: 2px 0px 20px 1px rgba(0,0,0,0.5);
   transition: all 0.3s ease-in-out;
+
+  .fixed-bottom {
+    position: absolute;
+      left: 0;
+      bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: $grey800;
+  }
 }
