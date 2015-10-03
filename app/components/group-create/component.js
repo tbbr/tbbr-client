@@ -1,7 +1,10 @@
 import Ember from 'ember';
 
+const { service } = Ember.inject;
+
 export default Ember.Component.extend({
-  store: Ember.inject.service(),
+  session: service('session'),
+  store: service('store'),
   name: null,
   description: null,
   actions: {
@@ -13,8 +16,10 @@ export default Ember.Component.extend({
         name: this.get('name'),
         description: this.get('description')
       });
-      group.save().then((group) => {
-      });
+      debugger;
+      this.get('session').authenticate('authenticator:torii', 'facebook');
+      // group.save().then((group) => {
+      // });
     }
   }
 });
