@@ -1,0 +1,13 @@
+{{#if sessionUser.current}}
+  {{#if currentUserInGroup}}
+    <h1>{{group.name}}</h1>
+    <ul>
+    {{#each group.users as |user|}}
+      <li>{{user-card user=user group=group}}</li>
+    {{/each}}
+    </ul>
+  {{else}}
+    <h1>{{group.name}}</h1>
+    <button class="btn btn--primary" type="button" {{action "joinGroup"}}>Join Group</button>
+  {{/if}}
+{{/if}}

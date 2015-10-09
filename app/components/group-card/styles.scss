@@ -2,12 +2,11 @@
   display: flex;
   position: relative;
   height: 70px;
-  border-bottom: 1px solid $secondaryLight;
+  border-bottom: 1px solid $secondaryDark;
   .media {
-    height: $imgMed;
-    width: $imgMed;
+    height: $imgMd;
+    width: $imgMd;
     margin: 10px;
-    border-radius: 3px;
   }
   .content {
     margin: 5px 0;
@@ -29,7 +28,6 @@
         display: inline-block;
         height: $imgSm;
         width: $imgSm;
-        border-radius: 3px;
       }
     }
   }

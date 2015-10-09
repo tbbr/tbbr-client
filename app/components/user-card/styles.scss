@@ -1,0 +1,22 @@
+& {
+  display: flex;
+  margin: 10px 0;
+  border-radius: 3px;
+  background-color: $secondaryLight;
+
+  .avatar {
+    margin: 10px;
+    width: $imgLg;
+    height: $imgLg;
+  }
+
+  .content {
+    display: block;
+    margin: 10px;
+    margin-left: 0;
+    .name {
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+  }
+}

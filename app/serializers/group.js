@@ -1,12 +1,9 @@
-import DS from 'ember-data';
+import ApplicationSerializer from './application';
 
-export default DS.JSONAPISerializer.extend({
+export default ApplicationSerializer.extend({
   attrs: {
     hashId: {serialize: false},
     createdAt: {serialize: false},
     updatedAt: {serialize: false}
-  },
-  keyForAttribute: function(attr, method) {
-    return Ember.String.camelize(attr);
   }
 });

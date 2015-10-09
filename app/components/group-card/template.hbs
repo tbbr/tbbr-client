@@ -1,4 +1,4 @@
-<img class="media" src="http://fpoimg.com/60x60?text={{group.name}}" />
+<img class="img--circle media" src="http://fpoimg.com/60x60?text={{group.name}}" />
 <div class="content">
   <div class="name">
     {{#link-to "group" group.hashId}}
@@ -6,7 +6,7 @@
     {{/link-to}}
     <div class="user-list">
       {{#each users as |user|}}
-        <li><img class="user-avatar" src="http://fpoimg.com/30x30?text={{user.name}}" /></li>
+        <li><img class="img--circle user-avatar" src="http://fpoimg.com/30x30?text={{user.name}}" /></li>
       {{/each}}
     </div>
   </div>
