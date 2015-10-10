@@ -15,7 +15,7 @@ export default Ember.Component.extend({
     })
 
     return inGroup
-  }.property('group', 'sessionUser.current'),
+  }.property('group.users.[]', 'sessionUser.current'),
 
   actions: {
     joinGroup: function() {
