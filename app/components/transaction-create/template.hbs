@@ -1,0 +1,10 @@
+<div class="transaction-content">
+  <div class="currency-input-group">
+    {{input type="number" value=dollars maxlength="5" placeholder="00"}}
+    <span>.</span>
+    {{input type="text" value=cents maxlength="2" placeholder="00"}}
+  </div>
+  {{textarea type="text" value=comment maxlength="140" placeholder="Comments..." rows="1"}}
+  <button class="btn" {{action "transactionCreate"}}>Create</button>
+</div>
+<!-- <button {{action "transactionCreate"}}>Create</button> -->

@@ -1,7 +1,18 @@
-<img class="img--circle avatar" src="{{user.avatarUrl}}">
-<div class="content">
-  <div class="name">{{user.name}}</div>
-  <div class="sub">
-    <button class="btn btn--primary" {{action "addTransaction"}}>Add Transaction</button>
+<div class="content-container">
+  <img class="img--circle avatar" src="{{user.avatarUrl}}">
+  <div class="content">
+    <div class="name">{{user.name}}</div>
+    <div class="sub">
+      <button class="btn btn--primary" {{action "addTransaction"}}>Add Transaction</button>
+    </div>
   </div>
 </div>
+{{#if isCreatingTransaction}}
+  {{
+    transaction-create
+    group=group
+    user=user
+    saveTransactionAction="saveTransactionAction"
+    cancelTransactionAction="cancelTransactionAction"
+  }}
+{{/if}}

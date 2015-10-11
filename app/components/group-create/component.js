@@ -16,9 +16,10 @@ export default Ember.Component.extend({
         description: this.get('description')
       });
       debugger;
-      this.get('session').authenticate('authenticator:torii', 'facebook');
-      // group.save().then((group) => {
-      // });
+      // this.get('session').authenticate('authenticator:torii', 'facebook');
+      group.save().then((group) => {
+        debugger
+      });
     }
   }
 });

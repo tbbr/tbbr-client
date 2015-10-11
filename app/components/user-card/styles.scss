@@ -1,8 +1,24 @@
 & {
-  display: flex;
+  position: relative;
+  display: block;
   margin: 10px 0;
   border-radius: 3px;
   background-color: $secondaryLight;
+  box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, 0.3);
+
+  .content-container {
+    display: flex;
+  }
+
+  &.blurred {
+    .content-container {
+      -webkit-filter: blur(7px);
+      -moz-filter: blur(7px);
+      -o-filter: blur(7px);
+      -ms-filter: blur(7px);
+      filter: blur(7px);
+    }
+  }
 
   .avatar {
     margin: 10px;
