@@ -23,11 +23,44 @@
     }
   }
 
+  .transaction-type {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+
+    span {
+      color: $grey400;
+      position: relative;
+        z-index: 1;
+      padding: 5px 10px;
+      border: 1px solid $secondaryLight;
+      font-size: 12px;
+      cursor: pointer;
+
+      &:hover {
+        z-index: 2;
+        border-color: $primaryBase;
+      }
+
+      &.active {
+        z-index: 2;
+        color: $primaryLighter;
+        border-color: $primaryBase;
+        background-color: $primaryDarker;
+      }
+    }
+
+    span:first-of-type {
+      margin-right: -5px;
+    }
+  }
+
   .transaction-content {
     display: flex;
-    position: relative;
-      top: 17px;
-      bottom: 50%;
+    padding-top: 35px;
   }
 
   .currency-input-group {
