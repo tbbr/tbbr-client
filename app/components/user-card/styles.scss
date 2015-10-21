@@ -35,4 +35,11 @@
       margin-bottom: 10px;
     }
   }
+
+  .transaction-list {
+    border-top: 3px solid $secondaryDark;
+    background-color: $secondaryBase;
+    max-height: 100px;
+    overflow-y: auto;
+  }
 }

@@ -8,22 +8,36 @@ export default Ember.Component.extend({
 
   classNameBindings: ['isBlurred:blurred'],
 
+  userTransactions: function() {
+    return this.get('store').query('transaction', {
+      'groupId': this.get('group.id'),
+      'userId': this.get('user.id')
+    })
+  }.property('sessionUser.curent', 'user', 'group'),
+
+  userBalance: function() {
+    let balance = 0
+    let curUser = this.get('sessionUser.current')
+    this.get('userTransactions').forEach(t => {
+      if (curUser.get('id') == t.get('lenderId').get('id')) {
+        balance += t.get('amount')
+      } else if (curUser.get('id') == t.get('burrowerId').get('id')) {
+        balance -= t.get('amount')
+      }
+    })
+    return balance
+  }.property('userTransactions.content'),
+
   isCreatingTransaction: false,
+  isShowTransactions: false,
+
   actions: {
     addTransaction: function() {
       this.set('isCreatingTransaction', true)
       this.set('isBlurred', true)
-      // let user = this.get('user')
-      // let curGroup = this.get('group')
-      // let curUser = this.get('sessionUser.current')
-      // let transaction = this.get('store').createRecord('transaction', {
-      //   amount: 425,
-      //   comment: "This is some memo or whatever?",
-      //   lenderId: curUser,
-      //   burrowerId: user,
-      //   groupId: curGroup
-      // });
-      // transaction.save()
+    },
+    toggleShowTransactions: function() {
+      this.toggleProperty('isShowTransactions')
     }
   }
 });

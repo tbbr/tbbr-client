@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
-const { service } = Ember.inject;
+const { service } = Ember.inject
 
 export default Ember.Component.extend({
   store: service('store'),
@@ -15,8 +15,7 @@ export default Ember.Component.extend({
         name: this.get('name'),
         description: this.get('description')
       });
-      debugger;
-      // this.get('session').authenticate('authenticator:torii', 'facebook');
+      debugger
       group.save().then((group) => {
         debugger
       });

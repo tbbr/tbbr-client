@@ -1,10 +1,3 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
-export default Ember.Route.extend({
-  model: function() {
-    return this.store.findAll('group');
-  },
-  setupController(controller, model) {
-    controller.set('model', model);
-  }
-});
+export default Ember.Route.extend()

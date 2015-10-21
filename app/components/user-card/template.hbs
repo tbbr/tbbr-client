@@ -4,6 +4,8 @@
     <div class="name">{{user.name}}</div>
     <div class="sub">
       <button class="btn btn--primary" {{action "addTransaction"}}>Add Transaction</button>
+      <button class="btn btn" {{action "toggleShowTransactions"}}>Show Transactions</button>
+      {{userBalance}}
     </div>
   </div>
 </div>
@@ -11,7 +13,18 @@
   {{transaction-create
     group=group
     user=user
-    saveTransactionAction="saveTransactionAction"
     cancelTransactionAction="cancelTransactionAction"
   }}
+{{/if}}
+
+{{#if isShowTransactions}}
+  <div class="transaction-list">
+    {{#each userTransactions as |transaction|}}
+      {{transaction-card
+        transaction=transaction
+      }}
+    {{else}}
+      <h5 class="center-align">You currently have no transactions with {{user.name}}</h5>
+    {{/each}}
+  </div>
 {{/if}}
