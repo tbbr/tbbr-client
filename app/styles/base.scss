@@ -15,7 +15,7 @@ html {
 
 body {
   font-family: "Montserrat", Helvetica, sans-serif;
-  background-color: $grey700;
+  background-color: $grey900;
   color: $baseFontColor;
 }
 
@@ -163,7 +163,7 @@ button {
   width: 100%;
   max-width: $containerWidth;
   overflow: hidden;
-  box-shadow: 1px 1px 26px 6px rgba(177, 177, 177, 0.2);
+  box-shadow: 1px 1px 26px 6px rgba(0, 0, 0, 0.5);
   margin-bottom: 10px;
   border-radius: 3px;
 }
