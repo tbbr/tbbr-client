@@ -3,13 +3,20 @@
   position: relative;
   height: 70px;
   border-bottom: 1px solid $secondaryDark;
-  .media {
-    height: $imgMd;
+  .group-img {
+    color: $grey50;
     width: $imgMd;
+    height: $imgMd;
+    line-height: $imgMd;
+    font-size: 25px;
     margin: 10px;
+    background-color: $primaryBase;
+    text-transform: uppercase;
+    box-shadow: inset 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
   }
   .content {
     margin: 5px 0;
+    text-align: left;
     .name {
       display: block;
       font-size: $baseFontSize + 5px;
@@ -26,6 +33,8 @@
       }
       .user-avatar {
         display: inline-block;
+        background-size: cover;
+        background-position: center center;
         height: $imgSm;
         width: $imgSm;
       }

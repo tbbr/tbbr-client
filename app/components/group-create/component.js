@@ -15,10 +15,7 @@ export default Ember.Component.extend({
         name: this.get('name'),
         description: this.get('description')
       });
-      debugger
-      group.save().then((group) => {
-        debugger
-      });
+      group.save()
     }
   }
 });

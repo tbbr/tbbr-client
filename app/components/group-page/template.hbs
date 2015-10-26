@@ -2,8 +2,14 @@
   {{#if currentUserInGroup}}
     <h1>{{group.name}}</h1>
     <ul>
-      {{#each group.users as |user|}}
+      {{#each filteredGroupUsers as |user|}}
         <li>{{user-card user=user group=group}}</li>
+      {{else}}
+        <div class="invite-user">
+          <div class="invite-text">Your group looks empty</div>
+          <div class="invite-text">Invite others with this link</div>
+          <input class="input input--darker" value={{inviteUrl}} readonly="true" {{action "inviteClick"}}>
+        </div>
       {{/each}}
     </ul>
   {{else}}

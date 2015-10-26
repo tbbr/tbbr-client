@@ -21,6 +21,8 @@
   }
 
   .avatar {
+    background-size: cover;
+    background-position: center center;
     margin: 10px;
     width: $imgLg;
     height: $imgLg;
@@ -30,16 +32,39 @@
     display: block;
     margin: 10px;
     margin-left: 0;
-    .name {
-      font-size: 25px;
+
+    .primary {
+      display: block;
       margin-bottom: 10px;
+    }
+
+    .name {
+      display: inline-block;
+      font-size: 25px;
+    }
+  }
+
+  .user-balance {
+    position: absolute;
+      top: 0;
+      right: 0;
+    padding-left: 10px;
+    font-size: 20px;
+    padding: 16px;
+    color: $secondaryLighter;
+
+    &.positive {
+      color: $primaryDark;
+    }
+    &.negative {
+      color: #D32F2F;
     }
   }
 
   .transaction-list {
     border-top: 3px solid $secondaryDark;
     background-color: $secondaryBase;
-    max-height: 100px;
+    max-height: 200px;
     overflow-y: auto;
   }
 }

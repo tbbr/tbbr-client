@@ -1,6 +1,12 @@
+<div class="side-headers">
+  <h3>Your Groups</h3>
+</div>
+
 <ul>
   {{#each groups as |group|}}
     <li>{{group-card group=group}}</li>
+  {{else}}
+    <h4 class="status-text text-uppercase">No Groups Found</h4>
   {{/each}}
 </ul>
 

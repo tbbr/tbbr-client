@@ -1,11 +1,13 @@
 <div class="content-container">
-  <img class="img--circle avatar" src="{{user.avatarUrl}}">
+  <div class="img--circle avatar" style="background-image: url('{{user.avatarUrl}}')"></div>
   <div class="content">
-    <div class="name">{{user.name}}</div>
+    <div class="primary">
+      <div class="name">{{user.name}}</div>
+      <div class="user-balance {{balanceStatus}}">{{userBalance}}</div>
+    </div>
     <div class="sub">
       <button class="btn btn--primary" {{action "addTransaction"}}>Add Transaction</button>
       <button class="btn btn" {{action "toggleShowTransactions"}}>Show Transactions</button>
-      {{userBalance}}
     </div>
   </div>
 </div>
@@ -13,7 +15,7 @@
   {{transaction-create
     group=group
     user=user
-    cancelTransactionAction="cancelTransactionAction"
+    closeAction="closeTransactionCreateAction"
   }}
 {{/if}}
 

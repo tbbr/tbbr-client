@@ -1,0 +1,14 @@
+& {
+  .invite-user {
+    width: 50%;
+    margin: 0 auto;
+
+    .invite-text {
+      color: $grey600;
+      text-align: center;
+      font-size: 13px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+  }
+}

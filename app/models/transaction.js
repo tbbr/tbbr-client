@@ -3,10 +3,10 @@ import DS from 'ember-data';
 let Transaction = DS.Model.extend({
   type: DS.attr('string'),
   amount: DS.attr('number'),
-  comment: DS.attr('string'),
-  lenderId: DS.belongsTo('user'),
-  burrowerId: DS.belongsTo('user'),
-  groupId: DS.belongsTo('group')
+  memo: DS.attr('string'),
+  relatedUser: DS.belongsTo('user'),
+  groupId: DS.attr('number'),
+  creator: DS.belongsTo('user')
 })
 
 Transaction.reopen({

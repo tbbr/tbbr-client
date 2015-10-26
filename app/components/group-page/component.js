@@ -5,6 +5,16 @@ const { service } = Ember.inject
 export default Ember.Component.extend({
   sessionUser: service('session-user'),
   store: service(),
+
+  inviteUrl: function() {
+    return 'http://localhost:4200/groups/' + this.get('group.hashId')
+  }.property('group'),
+
+  filteredGroupUsers: function() {
+    return this.get('group.users').filter(u => {
+      return u.get('id') != this.get('sessionUser.current.id')
+    })
+  }.property('group.users.[]'),
   currentUserInGroup: function() {
     let inGroup = false
     let curUserId = this.get('sessionUser.current').get('id')
@@ -24,6 +34,9 @@ export default Ember.Component.extend({
       let group = this.get('group')
       group.get('users').pushObject(curUserRec)
       group.save()
+    },
+    inviteClick: function() {
+      this.$('.invite-user input').select()
     }
   }
 });
