@@ -63,8 +63,13 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'production') {
+  if (environment === 'staging') {
+    ENV.assetHost = '//s3.amazonaws.com/payupassets/'
+  }
 
+
+  if (environment === 'production') {
+    ENV.assetHost = '//s3.amazonaws.com/payupassets/'
   }
 
   return ENV;
