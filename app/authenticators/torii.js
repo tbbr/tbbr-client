@@ -1,18 +1,17 @@
 import Ember from 'ember';
 import Torii from 'ember-simple-auth/authenticators/torii';
 import raw from 'ic-ajax';
-// import config from '../../config/environment';
+import config from '../config/environment';
 
-let config = {
-  apiHost: 'http://localhost:8080'
-};
+// let config = {
+//   apiHost: 'http://localhost:8080'
+// };
 
 const { RSVP } = Ember;
 const { service } = Ember.inject;
 
 export default Torii.extend({
   torii: service('torii'),
-  redirectUri: 'http://localhost:8080/',
   authenticate() {
     return new RSVP.Promise((resolve, reject) => {
       this._super(...arguments).then((data) => {
