@@ -66,5 +66,9 @@
     background-color: $secondaryBase;
     max-height: 200px;
     overflow-y: auto;
+
+    .status-text {
+      padding: 10px;
+    }
   }
 }
