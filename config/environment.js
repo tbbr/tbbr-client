@@ -20,7 +20,7 @@ module.exports = function(environment) {
       HAHSIDS_MIN_LENGTH: 11
     },
 
-    apiHost: 'http://localhost:8080',
+    apiHost: '//api.phanime.com',
     contentSecurityPolicy: {
       'default-src': "'none'",
       'font-src': "'self' http://fonts.gstatic.com", // Allow fonts to be loaded from http://fonts.gstatic.com
@@ -44,6 +44,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    ENV.apiHost = '//localhost:8080'
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
