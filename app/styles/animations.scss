@@ -1,0 +1,44 @@
+/* make keyframes that tell the start state and the end state of our object */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+@-webkit-keyframes fromTop { from { top: -200px; } to { top:0; } }
+@-moz-keyframes fromTop { from { top: -200px; } to { top:0; } }
+@keyframes fromTop { from { top: -200px; } to { top:0; } }
+
+.fade-in {
+	opacity:0;  /* make things invisible upon start */
+
+	-webkit-animation: fadeIn ease-in-out 1;
+	-moz-animation: fadeIn ease-in-out 1;
+	animation: fadeIn ease-in-out 1;
+
+  /* Ensure when animation done it stays at last frame (opacity: 1)*/
+	-webkit-animation-fill-mode: forwards;
+	-moz-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+
+	-webkit-animation-duration: 0.5s;
+	-moz-animation-duration: 0.5s;
+	animation-duration: 0.5s;
+}
+
+.from-top {
+  /* make things invisible upon start */
+  top: -200px;
+
+  -webkit-animation: fromTop ease-in-out 1;
+	-moz-animation: fromTop ease-in-out 1;
+	animation: fromTop ease-in-out 1;
+
+
+  /* Ensure when animation done it stays at last frame (opacity: 1)*/
+	-webkit-animation-fill-mode: forwards;
+	-moz-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+
+	-webkit-animation-duration:0.5s;
+	-moz-animation-duration:0.5s;
+	animation-duration:0.5s;
+}
