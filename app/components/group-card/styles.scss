@@ -3,25 +3,34 @@
   position: relative;
   height: 70px;
   border-bottom: 1px solid $secondaryDark;
+
   .group-img {
     color: $grey50;
     width: $imgMd;
     height: $imgMd;
     line-height: $imgMd;
     font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
     margin: 10px;
     background-color: $primaryBase;
     text-transform: uppercase;
-    box-shadow: inset 1px 1px 3px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
   }
   .content {
     margin: 5px 0;
     text-align: left;
     .name {
       display: block;
-      font-size: $baseFontSize + 5px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       height: 30px;
       line-height: 30px;
+
+      a {
+        color: $grey400;
+      }
 
       a.active {
         color: $primaryBase;
