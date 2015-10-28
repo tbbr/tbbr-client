@@ -20,7 +20,10 @@ export default Ember.Component.extend({
 
   actions: {
     transactionCreate: function() {
-      let amount = parseInt(this.get('dollars') * 100) + parseInt(this.get('cents'))
+      let cents = this.get('cents') || 0
+      let dollars = this.get('dollars') || 0
+      
+      let amount = parseInt(dollars * 100) + parseInt(cents)
 
       if (!amount || amount === 0) {
         return
