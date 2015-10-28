@@ -1,7 +1,15 @@
 & {
+  .group-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    padding-bottom: 10px;
+  }
   .invite-user {
     width: 50%;
-    margin: 0 auto;
+    margin: 40px auto;
 
     .invite-text {
       color: $grey600;

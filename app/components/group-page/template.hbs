@@ -1,6 +1,6 @@
 {{#if sessionUser.current}}
   {{#if currentUserInGroup}}
-    <h1>{{group.name}}</h1>
+    <div class="group-title">{{group.name}}</div>
     <ul>
       {{#each filteredGroupUsers as |user|}}
         <li>{{user-card user=user group=group}}</li>
