@@ -22,7 +22,7 @@ export default Ember.Component.extend({
       }
     })
     return transactions
-  }.property(),
+  }.property('sessionUser.current', 'user', 'group'),
 
   getUserTransactions: function() {
     this.get('store').query('transaction', {
@@ -50,13 +50,27 @@ export default Ember.Component.extend({
         }
       }
     })
+
+    return balance
+  }.property('userTransactions.[]'),
+
+  displayBalance: function() {
+    return "$" + (this.get('userBalance')/100).toFixed(2)
+  }.property('userBalance'),
+
+  setBalanceStatus: function() {
+    let balance = this.get('userBalance')
+
     if (balance > 0) {
       this.set('balanceStatus', 'positive')
     } else if (balance < 0) {
       this.set('balanceStatus', 'negative')
     }
-    return "$" + (balance/100).toFixed(2)
-  }.property('userTransactions.[]'),
+
+    if (balance == 0) {
+      this.set('balanceStatus', '')
+    }
+  }.observes('userBalance'),
 
   isCreatingTransaction: false,
   isShowTransactions: false,
