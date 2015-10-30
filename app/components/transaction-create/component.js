@@ -10,6 +10,10 @@ export default Ember.Component.extend({
   cents: null,
   memo: '',
 
+  setup: function() {
+    this.$('.input-dollar').focus()
+  }.on('didInsertElement'),
+
   isBurrow: function() {
     return this.get('type') === 'Burrow'
   }.property('type'),

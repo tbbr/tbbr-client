@@ -4,7 +4,7 @@
     <span class="{{if isLend "active"}}" {{action "changeType" "Lend"}}>Lend</span>
   </div>
   <div class="currency-input-group">
-    {{input type="number" value=dollars maxlength="5" placeholder="00"}}
+    {{input type="number" class="input-dollar" value=dollars maxlength="5" placeholder="00"}}
     <span>.</span>
     {{input type="number" value=cents maxlength="2" placeholder="00"}}
   </div>
