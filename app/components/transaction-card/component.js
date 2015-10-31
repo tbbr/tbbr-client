@@ -1,8 +1,16 @@
-import Ember from 'ember';
+import Ember from 'ember'
+
+const { service } = Ember.inject
 
 export default Ember.Component.extend({
   classNameBindings: ['isEditingTransaction:blurred'],
+
+  sessionUser: service('session-user'),
   isEditingTransaction: false,
+
+  isCreatorCurrentUser: function() {
+    return this.get('sessionUser.current.id') === this.get('transaction.creator.id')
+  }.property('transaction.creator'),
 
   dollars: function() {
     let dollars = parseInt(this.get('transaction.amount')/100)
