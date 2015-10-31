@@ -8,6 +8,9 @@ export default Ember.Component.extend({
 
   classNameBindings: ['isCreatingTransaction:blurred'],
 
+  // TODO: big design flaw, will figure out later :(
+  triggerUserTransactions: 0,
+
   userTransactions: function() {
     let groupId = this.get('group.id')
     let userId = this.get('user.id')
@@ -22,7 +25,7 @@ export default Ember.Component.extend({
       }
     })
     return transactions
-  }.property('sessionUser.current', 'user', 'group'),
+  }.property('sessionUser.current', 'user', 'group', 'triggerUserTransactions'),
 
   getUserTransactions: function() {
     this.get('store').query('transaction', {
@@ -84,6 +87,10 @@ export default Ember.Component.extend({
     },
     closeTransactionCreateAction: function() {
       this.set('isCreatingTransaction', false)
+    },
+    transactionUpdated: function() {
+      // TODO: I feel horrible about this :(
+      this.incrementProperty('triggerUserTransactions')
     }
   }
 });

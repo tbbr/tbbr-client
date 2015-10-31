@@ -43,6 +43,9 @@ export default Ember.Component.extend({
     },
     closeTransactionEdit: function() {
       this.set('isEditingTransaction', false)
+    },
+    transactionUpdated: function() {
+      this.sendAction('transactionUpdated')
     }
   }
 })

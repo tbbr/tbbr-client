@@ -43,7 +43,10 @@ export default Ember.Component.extend({
       transaction.set('amount', amount)
       transaction.set('memo', transaction.get('memo').trim())
 
-      this.get('transaction').save()
+      this.get('transaction').save().then(() => {
+        this.sendAction('closeAction')
+        this.sendAction('transactionUpdated')
+      })
     },
     changeType: function(type) {
       this.get('transaction').set('type', type)
