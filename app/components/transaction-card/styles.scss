@@ -1,4 +1,38 @@
 & {
+  position: relative;
   padding: 10px;
   border-bottom: 2px solid $secondaryDark;
+
+  &.blurred {
+    .transaction-card-content {
+      -webkit-filter: blur(7px);
+      -moz-filter: blur(7px);
+      -o-filter: blur(7px);
+      -ms-filter: blur(7px);
+      filter: blur(7px);
+
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+  }
+
+  .sub-line {
+    color: $grey600;
+    text-align: right;
+    margin-top: 20px;
+    li {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-right: 8px;
+      i.fa {
+        font-size: 18px;
+        cursor: pointer;
+
+        &:hover {
+          color: $grey400;
+        }
+      }
+    }
+  }
 }

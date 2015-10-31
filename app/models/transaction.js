@@ -6,7 +6,8 @@ let Transaction = DS.Model.extend({
   memo: DS.attr('string'),
   relatedUser: DS.belongsTo('user'),
   groupId: DS.attr('number'),
-  creator: DS.belongsTo('user')
+  creator: DS.belongsTo('user'),
+  createdAt: DS.attr('date')
 })
 
 Transaction.reopen({

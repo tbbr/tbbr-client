@@ -1,1 +1,33 @@
-<b>{{transaction.creator.name}}</b> {{displayType}} <b>{{transaction.relatedUser.name}}</b> {{transaction.formattedAmount}} for <i>{{transaction.memo}}</i>
+<div class="transaction-card-content">
+  <div class="primary-line">
+    <span>
+      <b>{{transaction.creator.name}}</b>
+    </span>
+    <span>
+      {{displayType}}
+    </span>
+    <span>
+     <b>{{transaction.relatedUser.name}}</b>
+    </span>
+    <span>
+    {{transaction.formattedAmount}}
+    </span>
+     for
+    <span>
+     <i>{{transaction.memo}}</i>
+    </span>
+  </div>
+
+  <div class="sub-line">
+    <li><i class="fa fa-pencil" {{action "editTransaction"}}></i></li>
+    <li><i class="fa fa-trash-o" {{action "deleteTransaction"}}></i></li>
+    <li class="text-uppercase">{{moment-from-now transaction.createdAt interval=1000}}</li>
+  </div>
+</div>
+
+{{#if isEditingTransaction}}
+  {{transaction-edit
+    transaction=transaction
+    closeAction="closeTransactionEdit"
+  }}
+{{/if}}

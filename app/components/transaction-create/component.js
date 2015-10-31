@@ -3,6 +3,8 @@ import Ember from 'ember';
 const { service } = Ember.inject
 
 export default Ember.Component.extend({
+  classNames: ['fade-in', 'animation-duration-300s'],
+
   store: service(),
 
   type: 'Burrow',
