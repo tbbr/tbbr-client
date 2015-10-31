@@ -30,6 +30,9 @@ export default Ember.Component.extend({
     editTransaction: function() {
       this.set('isEditingTransaction', true)
     },
+    deleteTransaction: function() {
+      this.get('transaction').destroyRecord()
+    },
     closeTransactionEdit: function() {
       this.set('isEditingTransaction', false)
     }
