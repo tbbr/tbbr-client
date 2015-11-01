@@ -5,8 +5,7 @@ let LetterToColor = [
   '#667799',
   '#7a9460',
   '#dd9977',
-  '#665566',
-  '#223333'
+  '#665566'
 ]
 
 export default Ember.Component.extend({
