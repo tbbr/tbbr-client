@@ -19,6 +19,9 @@ body {
   font-family: "San Francisco", Helvetica, sans-serif;
   background-color: $grey900;
   color: $baseFontColor;
+  // Font smoothing
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 0px 0px 0px;
 }
 
 ::moz-selection {
