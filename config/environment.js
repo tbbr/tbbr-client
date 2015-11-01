@@ -20,7 +20,7 @@ module.exports = function(environment) {
       HAHSIDS_MIN_LENGTH: 11
     },
 
-    apiHost: '//api.phanime.com',
+    apiHost: '//api.tbbr.me',
     contentSecurityPolicy: {
       'default-src': "'none'",
       'font-src': "'self' http://fonts.gstatic.com", // Allow fonts to be loaded from http://fonts.gstatic.com
@@ -28,7 +28,8 @@ module.exports = function(environment) {
       'img-src': "'self' http://fpoimg.com http://i.imgur.com",
       'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com", // Allow inline styles and loaded CSS from http://fonts.googleapis.com
       'media-src': "'self'"
-    }
+    },
+    appHost: 'http://tbbr.me'
   };
 
   ENV.torii = {
@@ -45,6 +46,7 @@ module.exports = function(environment) {
 
   if (environment === 'development') {
     ENV.apiHost = '//localhost:8080'
+    ENV.appHost = 'http://localhost:4200'
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -65,12 +67,12 @@ module.exports = function(environment) {
   }
 
   if (environment === 'staging') {
-    ENV.assetHost = '//s3.amazonaws.com/payupassets/'
+    ENV.assetHost = '//s3.amazonaws.com/tbbrassets/'
   }
 
 
   if (environment === 'production') {
-    ENV.assetHost = '//s3.amazonaws.com/payupassets/'
+    ENV.assetHost = '//s3.amazonaws.com/tbbrassets/'
   }
 
   return ENV;

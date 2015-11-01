@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import Ember from 'ember'
+import config from '../../config/environment'
 
 const { service } = Ember.inject
 
@@ -7,7 +8,7 @@ export default Ember.Component.extend({
   store: service(),
 
   inviteUrl: function() {
-    return 'http://localhost:4200/groups/' + this.get('group.hashId')
+    return `${config.appHost}/groups/${this.get('group.hashId')}`
   }.property('group'),
 
   filteredGroupUsers: function() {
