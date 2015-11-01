@@ -12,7 +12,9 @@
     <span>
     {{transaction.formattedAmount}}
     </span>
-     for
+    {{#if transaction.memo}}
+       for
+    {{/if}}
     <span>
      <i>{{transaction.memo}}</i>
     </span>
