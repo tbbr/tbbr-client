@@ -48,7 +48,7 @@
     .name {
       display: inline-block;
       font-size: 25px;
-      font-weight: 100;
+      font-weight: 300;
     }
   }
 
@@ -58,7 +58,6 @@
       right: 0;
     padding-left: 10px;
     font-size: 20px;
-    font-weight: 100;
     padding: 16px;
     color: $secondaryLighter;
 
@@ -66,7 +65,7 @@
       color: $primaryDark;
     }
     &.negative {
-      color: #D32F2F;
+      color: #FF5555;
     }
   }
 
