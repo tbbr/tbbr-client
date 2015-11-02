@@ -20,7 +20,7 @@ module.exports = function(environment) {
       HAHSIDS_MIN_LENGTH: 11
     },
 
-    apiHost: '//api.tbbr.me',
+    apiHost: '//tbbr.me',
     contentSecurityPolicy: {
       'default-src': "'none'",
       'font-src': "'self' http://fonts.gstatic.com", // Allow fonts to be loaded from http://fonts.gstatic.com

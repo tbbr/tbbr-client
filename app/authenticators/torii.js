@@ -16,7 +16,7 @@ export default Torii.extend({
     return new RSVP.Promise((resolve, reject) => {
       this._super(...arguments).then((data) => {
         raw({
-          url:      `${config.apiHost}/tokens/oauth/grant`,
+          url:      `${config.apiHost}/api/tokens/oauth/grant`,
           type:     'POST',
           dataType: 'json',
           data:     { 'grant_type': 'facebook_auth_code', 'auth_code': data.authorizationCode }
