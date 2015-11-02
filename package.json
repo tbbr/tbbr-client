@@ -1,7 +1,7 @@
 {
-  "name": "payup-client",
+  "name": "tbbr-client",
   "version": "0.0.0",
-  "description": "Small description for payup-client goes here",
+  "description": "Just put it on my tab",
   "private": true,
   "directories": {
     "doc": "doc",

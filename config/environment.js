@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'payup-client',
+    modulePrefix: 'tbbr-client',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
