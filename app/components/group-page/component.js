@@ -24,7 +24,6 @@ export default Ember.Component.extend({
         inGroup = true
       }
     })
-
     return inGroup
   }.property('group.users.[]', 'sessionUser.current'),
 
