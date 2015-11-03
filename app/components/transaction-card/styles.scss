@@ -23,6 +23,12 @@
     }
   }
 
+  .primary-line {
+    .name {
+      font-weight: bold;
+    }
+  }
+
   .sub-line {
     color: $grey600;
     text-align: right;

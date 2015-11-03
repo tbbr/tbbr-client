@@ -1,23 +1,11 @@
 <div class="transaction-card-content">
   <div class="primary-line">
-    <span>
-      <b>{{transaction.creator.name}}</b>
-    </span>
-    <span>
-      {{displayType}}
-    </span>
-    <span>
-     <b>{{transaction.relatedUser.name}}</b>
-    </span>
-    <span>
+    <span class="name">{{transaction.creator.name}}</span>
+    {{displayType}}
+    <span class="name">{{transaction.relatedUser.name}}</span>
     {{transaction.formattedAmount}}
-    </span>
-    {{#if transaction.memo}}
-       for
-    {{/if}}
-    <span>
-     <i>{{transaction.memo}}</i>
-    </span>
+    {{#if transaction.memo}}for{{/if}}
+    <span class="memo">{{transaction.memo}}</span>
   </div>
 
   <div class="sub-line">
