@@ -7,6 +7,10 @@
   height: 100%;
   background-color: rgba(0,0,0, 0.5);
 
+  .btn {
+    margin-bottom: 4px;
+  }
+
   textarea {
     background: transparent;
     border: none;
@@ -75,7 +79,7 @@
     background-color: transparent;
     padding: 5px;
     font-size: 30px;
-    min-width: 140px;
+    min-width: 155px;
     &:before {
       content: "$";
       color: $primaryBase;
@@ -104,7 +108,7 @@
     input:first-of-type {
       margin-right: -5px;
       text-align: right;
-      width: 50px;
+      width: 70px;
 
       &::after {
         content: ".";
