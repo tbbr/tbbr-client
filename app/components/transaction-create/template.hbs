@@ -1,12 +1,12 @@
 <div class="transaction-content">
   <div class="transaction-type">
-    <span class="{{if isBurrow "active"}}" {{action "changeType" "Burrow"}}>Burrow</span>
+    <span class="{{if isBorrow "active"}}" {{action "changeType" "Borrow"}}>Borrow</span>
     <span class="{{if isLend "active"}}" {{action "changeType" "Lend"}}>Lend</span>
   </div>
   <div class="currency-input-group">
-    {{input type="number" class="input-dollar" value=dollars maxlength="5" placeholder="00"}}
+    {{input type="number" class="input-dollar" value=dollars max="10000" step="1" placeholder="00"}}
     <span>.</span>
-    {{input type="number" value=cents maxlength="2" placeholder="00"}}
+    {{input type="number" value=cents max="99" placeholder="00"}}
   </div>
   {{textarea type="text" value=memo maxlength="140" placeholder="Memo..." rows="1"}}
   <button class="btn" {{action "transactionCreate"}}>Create</button>

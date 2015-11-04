@@ -7,7 +7,7 @@ export default Ember.Component.extend({
 
   store: service(),
 
-  type: 'Burrow',
+  type: 'Borrow',
   dollars: null,
   cents: null,
   memo: '',
@@ -16,8 +16,8 @@ export default Ember.Component.extend({
     this.$('.input-dollar').focus()
   }.on('didInsertElement'),
 
-  isBurrow: function() {
-    return this.get('type') === 'Burrow'
+  isBorrow: function() {
+    return this.get('type') === 'Borrow'
   }.property('type'),
 
   isLend: function() {

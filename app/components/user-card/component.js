@@ -39,7 +39,7 @@ export default Ember.Component.extend({
     let balance = 0
     let curUser = this.get('sessionUser.current')
     this.get('userTransactions').forEach(t => {
-      if (t.get('type') === 'Burrow') {
+      if (t.get('type') === 'Borrow') {
         if (curUser.get('id') === t.get('creator.id')) {
           balance -= t.get('amount')
         } else {

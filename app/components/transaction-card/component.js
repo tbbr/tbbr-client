@@ -25,13 +25,13 @@ export default Ember.Component.extend({
 
   displayType: function() {
     let type = this.get('transaction.type')
-    if (type === 'Burrow') {
-      return 'burrowed'
+    if (type === 'Borrow') {
+      return 'borrowed'
     } else if (type === 'Lend') {
       return 'lent'
     }
 
-    return 'burrowed'
+    return 'borrowed'
   }.property('transaction.type'),
 
   actions: {

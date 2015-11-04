@@ -18,8 +18,8 @@ export default Ember.Component.extend({
     this.$('.input-dollar').focus()
   }.on('didInsertElement'),
 
-  isBurrow: function() {
-    return this.get('transaction.type') === 'Burrow'
+  isBorrow: function() {
+    return this.get('transaction.type') === 'Borrow'
   }.property('transaction.type'),
 
   isLend: function() {
