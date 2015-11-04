@@ -15,7 +15,9 @@ export default Ember.Component.extend({
         name: this.get('name'),
         description: this.get('description')
       });
-      group.save()
+      group.save().then(() => {
+        this.sendAction('cancelCreateAction')
+      })
     }
   }
 });
