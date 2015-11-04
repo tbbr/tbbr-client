@@ -4,6 +4,11 @@
     left: 50%;
   margin-top: -18px;
   margin-left: -113px;
+
+  .site-name {
+    color: $primaryBase;
+  }
+
   .btn--facebook-login {
     color: $grey100;
     background-color: #3b5998;
