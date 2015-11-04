@@ -57,6 +57,26 @@ export default Ember.Component.extend({
     },
     close: function() {
       this.sendAction('closeAction')
+    },
+    checkDollars: function(d) {
+      let dot = (d.lastIndexOf(".") > -1) ? true : false
+
+      let dollars = Math.abs(parseInt(d))
+      if (dollars > 9999) {
+        dollars = 9999
+      }
+      this.set('dollars', dollars)
+
+      if (dot) {
+        this.$('.input-cent').focus()
+      }
+    },
+    checkCents: function(c) {
+      let cents = Math.abs(parseInt(c))
+      if (cents > 99) {
+        cents = 99
+      }
+      this.set('cents', cents)
     }
   }
 });
