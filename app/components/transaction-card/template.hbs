@@ -2,8 +2,13 @@
   <div class="primary-line">
     <span class="name">{{transaction.creator.name}}</span>
     {{displayType}}
-    <span class="name">{{transaction.relatedUser.name}}</span>
     {{transaction.formattedAmount}}
+    {{#if isBorrow}}
+      from
+    {{else}}
+      to
+    {{/if}}
+    <span class="name">{{transaction.relatedUser.name}}</span>
     {{#if transaction.memo}}for{{/if}}
     <span class="memo">{{transaction.memo}}</span>
   </div>

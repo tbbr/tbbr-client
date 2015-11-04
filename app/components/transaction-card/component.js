@@ -23,6 +23,10 @@ export default Ember.Component.extend({
     return cents.toString().length === 1 ? "0" + cents.toString() : cents.toString()
   }.property('transaction.amount'),
 
+  isBorrow: function() {
+    return this.get('transaction.type') === 'Borrow'
+   }.property('transaction.type'),
+
   displayType: function() {
     let type = this.get('transaction.type')
     if (type === 'Borrow') {
