@@ -1,0 +1,47 @@
+& {
+  display: inline-block;
+  background-color: transparent;
+  padding: 5px;
+  font-size: 30px;
+  min-width: 155px;
+  
+  &:before {
+    content: "$";
+    color: $primaryBase;
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input {
+    display: inline-block;
+    font-size: 30px;
+    padding: 0px;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $grey400;
+    background: transparent;
+
+    &:focus {
+      border-color: $primaryBase;
+    }
+  }
+
+  input:first-of-type {
+    margin-right: -5px;
+    text-align: right;
+    width: 70px;
+
+    &::after {
+      content: ".";
+    }
+  }
+
+  input:last-of-type {
+    margin-left: -5px;
+    width: 35px;
+  }
+}
