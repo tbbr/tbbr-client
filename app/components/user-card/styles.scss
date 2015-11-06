@@ -71,15 +71,4 @@
       color: #FF5555;
     }
   }
-
-  .transaction-list {
-    border-top: 3px solid $secondaryDark;
-    background-color: $secondaryBase;
-    max-height: 250px;
-    overflow-y: auto;
-
-    .status-text {
-      padding: 10px;
-    }
-  }
 }

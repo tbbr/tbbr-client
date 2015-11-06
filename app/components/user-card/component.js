@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 const { service } = Ember.inject
 
@@ -7,6 +7,9 @@ export default Ember.Component.extend({
   store: service(),
 
   classNameBindings: ['isCreatingTransaction:blurred'],
+
+  isCreatingTransaction: false,
+  isShowTransactions: false,
 
   // TODO: big design flaw, will figure out later :(
   triggerUserTransactions: 0,

@@ -51,6 +51,8 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('bower_components/hashids/lib/hashids.js');
+  app.import('bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.js')
+  app.import('bower_components/perfect-scrollbar/css/perfect-scrollbar.css')
 
   return app.toTree();
 };
