@@ -15,8 +15,8 @@
 
   <div class="sub-line">
     {{#if isCreatorCurrentUser}}
-      <li><i class="fa fa-pencil" {{action "editTransaction"}}></i></li>
-      <li><i class="fa fa-trash-o" {{action "deleteTransaction"}}></i></li>
+      <li><i class="material-icons" {{action "editTransaction"}}>edit</i></li>
+      <li><i class="material-icons" {{action "deleteTransaction"}}>delete</i></li>
     {{/if}}
     <li class="text-uppercase">{{moment-from-now transaction.createdAt interval=1000}}</li>
   </div>
