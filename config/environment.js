@@ -30,7 +30,7 @@ module.exports = function(environment) {
       'media-src': "'self'"
     },
     appHost: 'http://tbbr.me'
-  };
+  }
 
   ENV.torii = {
     providers: {
@@ -38,32 +38,32 @@ module.exports = function(environment) {
         apiKey: '556458821173978'
       }
     }
-  };
+  }
 
   ENV['ember-simple-auth'] = {
     store: 'session-store:local-storage'
-  };
+  }
 
   if (environment === 'development') {
     ENV.apiHost = '//localhost:8080'
     ENV.appHost = 'http://localhost:4200'
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    // ENV.APP.LOG_RESOLVER = true
+    // ENV.APP.LOG_ACTIVE_GENERATION = true
+    // ENV.APP.LOG_TRANSITIONS = true
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true
+    // ENV.APP.LOG_VIEW_LOOKUPS = true
   }
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
-    ENV.locationType = 'none';
+    ENV.baseURL = '/'
+    ENV.locationType = 'none'
 
     // keep test console output quieter
-    ENV.APP.LOG_ACTIVE_GENERATION = false;
-    ENV.APP.LOG_VIEW_LOOKUPS = false;
+    ENV.APP.LOG_ACTIVE_GENERATION = false
+    ENV.APP.LOG_VIEW_LOOKUPS = false
 
-    ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.rootElement = '#ember-testing'
   }
 
   if (environment === 'staging') {
@@ -75,5 +75,5 @@ module.exports = function(environment) {
     ENV.assetHost = '//s3.amazonaws.com/tbbrassets/'
   }
 
-  return ENV;
-};
+  return ENV
+}

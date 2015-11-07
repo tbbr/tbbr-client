@@ -1,4 +1,4 @@
-import DS from 'ember-data';
+import DS from 'ember-data'
 
 export default DS.Model.extend({
   name: DS.attr('string'),
@@ -7,4 +7,4 @@ export default DS.Model.extend({
   users: DS.hasMany('user'),
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date')
-});
+})

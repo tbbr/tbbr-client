@@ -1,10 +1,10 @@
-import Ember from 'ember';
-import Torii from 'ember-simple-auth/authenticators/torii';
-import raw from 'ic-ajax';
-import config from '../config/environment';
+import Ember from 'ember'
+import Torii from 'ember-simple-auth/authenticators/torii'
+import raw from 'ic-ajax'
+import config from '../config/environment'
 
-const { RSVP } = Ember;
-const { service } = Ember.inject;
+const { RSVP } = Ember
+const { service } = Ember.inject
 
 export default Torii.extend({
   torii: service('torii'),
@@ -21,9 +21,9 @@ export default Torii.extend({
             access_token: response.accessToken,
             provider: data.provider,
             user_id: response.userId
-          });
-        }, reject);
-      }, reject);
-    });
+          })
+        }, reject)
+      }, reject)
+    })
   }
-});
+})

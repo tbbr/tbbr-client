@@ -1,4 +1,4 @@
-import DS from 'ember-data';
+import DS from 'ember-data'
 
 let Transaction = DS.Model.extend({
   type: DS.attr('string'),

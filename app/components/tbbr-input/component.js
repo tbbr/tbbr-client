@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 export default Ember.Component.extend({
   tagName: 'input',
@@ -40,4 +40,4 @@ export default Ember.Component.extend({
     if (this.get('onFocusOut'))
       this.sendAction('onFocusOut', event)
   }
-});
+})

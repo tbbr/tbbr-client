@@ -1,4 +1,4 @@
-import DS from 'ember-data';
+import DS from 'ember-data'
 
 export default DS.JSONAPISerializer.extend({
   attrs: {
@@ -6,6 +6,6 @@ export default DS.JSONAPISerializer.extend({
     updatedAt: {serialize: false}
   },
   keyForAttribute: function(attr, method) {
-    return Ember.String.camelize(attr);
+    return Ember.String.camelize(attr)
   }
-});
+})

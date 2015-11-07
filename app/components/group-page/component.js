@@ -39,4 +39,4 @@ export default Ember.Component.extend({
       this.$('.invite-user input').select()
     }
   }
-});
+})

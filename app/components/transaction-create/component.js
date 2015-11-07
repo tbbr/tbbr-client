@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 const { service } = Ember.inject
 
@@ -60,4 +60,4 @@ export default Ember.Component.extend({
       this.sendAction('closeAction')
     }
   }
-});
+})

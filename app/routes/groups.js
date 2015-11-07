@@ -3,9 +3,9 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model: function() {
-    return this.store.findAll('group');
+    return this.store.findAll('group')
   },
   setupController(controller, model) {
-    controller.set('model', model);
+    controller.set('model', model)
   }
-});
+})

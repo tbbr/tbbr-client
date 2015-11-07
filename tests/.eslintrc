@@ -1,0 +1,15 @@
+{
+  "extends": "ember",
+
+  "parser": "babel-eslint",
+
+  "rules": {
+    "no-console": 0,
+    "comma-dangle": [2, "never"],
+    "camelcase": [2, {"properties": "never"}],
+    "eqeqeq": [2, "smart"],
+    "quotes": [2, "single"],
+    "semi": [2, "never"],
+    "no-underscore-dangle": 0
+  }
+}

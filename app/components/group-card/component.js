@@ -14,7 +14,7 @@ export default Ember.Component.extend({
   }.property('group.name'),
 
   groupLetterColor: function() {
-    let random = Math.floor(Math.random() * (5 - 0 + 1)) + 0;
+    let random = Math.floor(Math.random() * (5 - 0 + 1)) + 0
     return LetterToColor[random]
   }.property('groupFirstLetter')
-});
+})

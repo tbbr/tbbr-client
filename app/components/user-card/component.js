@@ -96,4 +96,4 @@ export default Ember.Component.extend({
       this.incrementProperty('triggerUserTransactions')
     }
   }
-});
+})
