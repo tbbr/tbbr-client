@@ -1,8 +1,8 @@
 <div class="transaction-card-content">
   <div class="primary-line">
     <span class="name">{{transaction.creator.name}}</span>
-    {{displayType}}
-    {{transaction.formattedAmount}}
+    <span class="type">{{displayType}}</span>
+    <span class="amount">{{transaction.formattedAmount}}</span>
     {{#if isBorrow}}
       from
     {{else}}

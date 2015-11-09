@@ -7,7 +7,7 @@
     </div>
     <div class="sub">
       <button class="btn btn--primary" {{action "addTransaction"}}>Add Transaction</button>
-      <button class="btn btn" {{action "toggleShowTransactions"}}>
+      <button class="btn" {{action "toggleShowTransactions"}}>
         {{#if isShowTransactions}}
           Hide Transactions
         {{else}}
@@ -27,6 +27,7 @@
 
 {{#if isShowTransactions}}
   {{transaction-list
+    user=user
     transactions=userTransactions
     transactionUpdated="transactionUpdated"
   }}

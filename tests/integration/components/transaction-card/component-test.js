@@ -1,26 +1,33 @@
 import { moduleForComponent, test } from 'ember-qunit'
 import hbs from 'htmlbars-inline-precompile'
+import moment from 'moment'
 
 moduleForComponent('transaction-card', 'Integration | Component | transaction card', {
   integration: true
 })
 
-test('it renders', function(assert) {
-  assert.expect(2)
+test('it renders correct content', function(assert) {
+  assert.expect(5)
 
-  // Set any properties with this.set('myProperty', 'value')
-  // Handle any actions with this.on('myAction', function(val) { ... })
+  let createdAt = Date()
 
-  this.render(hbs`{{transaction-card}}`)
+  this.set('transaction', Ember.Object.create({
+    type: 'Borrow',
+    amount: 2440,
+    memo: 'Food',
+    relatedUser: Ember.Object.create({name: 'Test User 1'}),
+    groupId: 1,
+    creator: Ember.Object.create({name: 'Test User 2'}),
+    createdAt: createdAt,
+    // Stubbed
+    formattedAmount: "$24.40"
+  }))
 
-  assert.equal(this.$().text().trim(), '')
+  this.render(hbs`{{transaction-card transaction=transaction}}`)
 
-  // Template block usage:
-  this.render(hbs`
-    {{#transaction-card}}
-      template block text
-    {{/transaction-card}}
-  `)
-
-  assert.equal(this.$().text().trim(), 'template block text')
+  assert.equal(this.$('span.name').first().text().trim(), 'Test User 2')
+  assert.equal(this.$('span.name').eq(1).text().trim(), 'Test User 1')
+  assert.equal(this.$('span.type').text().trim(), 'borrowed')
+  assert.equal(this.$('span.amount').text().trim(), '$24.40')
+  assert.equal(this.$('span.memo').text().trim(), 'Food')
 })

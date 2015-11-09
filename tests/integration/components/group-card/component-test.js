@@ -5,22 +5,21 @@ moduleForComponent('group-card', 'Integration | Component | group card', {
   integration: true
 })
 
-test('it renders', function(assert) {
-  assert.expect(2)
+test('it renders with the correct content', function(assert) {
 
-  // Set any properties with this.set('myProperty', 'value')
-  // Handle any actions with this.on('myAction', function(val) { ... })
+  this.set('group', Ember.Object.create(
+    {
+      name: 'Test',
+      users: [
+        Ember.Object.create({name: 'User1'}),
+        Ember.Object.create({name: 'User2'})
+      ]
+    }
+  ))
 
-  this.render(hbs`{{group-card}}`)
+  this.render(hbs`{{group-card group=group}}`)
 
-  assert.equal(this.$().text().trim(), '')
-
-  // Template block usage:
-  this.render(hbs`
-    {{#group-card}}
-      template block text
-    {{/group-card}}
-  `)
-
-  assert.equal(this.$().text().trim(), 'template block text')
+  assert.equal(this.$('.group-img').text().trim(), 'T')
+  assert.equal(this.$('.content .name a').text().trim(), 'Test')
+  assert.equal(this.$('.user-list li').length, 2)
 })

@@ -1,26 +1,39 @@
 import { moduleForComponent, test } from 'ember-qunit'
+import { skip } from 'qunit'
 import hbs from 'htmlbars-inline-precompile'
+import Ember from 'ember'
 
-moduleForComponent('group-page', 'Integration | Component | group page', {
-  integration: true
+const sessionUserStub = Ember.Service.extend({
+  isAuthenticated: true,
+  current: Ember.Object.create({
+    id: '1',
+    name: 'Maaz'
+  })
 })
 
-test('it renders', function(assert) {
-  assert.expect(2)
 
-  // Set any properties with this.set('myProperty', 'value')
-  // Handle any actions with this.on('myAction', function(val) { ... })
+moduleForComponent('group-page', 'Integration | Component | group page', {
+  integration: true,
 
-  this.render(hbs`{{group-page}}`)
+  beforeEach: function () {
+    this.register('service:location-service', locationStub);
+    this.inject.service('location-service', { as: 'location' });
+  }
+})
 
-  assert.equal(this.$().text().trim(), '')
 
-  // Template block usage:
-  this.render(hbs`
-    {{#group-page}}
-      template block text
-    {{/group-page}}
-  `)
+skip('it renders nothing when user is not logged in', function(assert) {
+  this.set('group', Ember.Object.create(
+    {
+      name: 'Test Group',
+      users: [
+        Ember.Object.create({name: 'User1'}),
+        Ember.Object.create({name: 'User2'})
+      ]
+    }
+  ))
 
-  assert.equal(this.$().text().trim(), 'template block text')
+  this.render(hbs`{{group-page group=group}}`)
+
+  assert.equal(this.$().text(), '')
 })

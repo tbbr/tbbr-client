@@ -5,9 +5,6 @@ let User = DS.Model.extend({
   email: DS.attr('string'),
   avatarUrl: DS.attr('string'),
   groups: DS.hasMany('groups'),
-  balanceUsers: DS.hasMany('balance-users', {
-    inverse: 'userId'
-  }),
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date')
 })

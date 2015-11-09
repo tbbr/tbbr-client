@@ -6,21 +6,13 @@ moduleForComponent('transaction-create', 'Integration | Component | transaction 
 })
 
 test('it renders', function(assert) {
-  assert.expect(2)
-
-  // Set any properties with this.set('myProperty', 'value')
-  // Handle any actions with this.on('myAction', function(val) { ... })
+  assert.expect(5)
 
   this.render(hbs`{{transaction-create}}`)
 
-  assert.equal(this.$().text().trim(), '')
-
-  // Template block usage:
-  this.render(hbs`
-    {{#transaction-create}}
-      template block text
-    {{/transaction-create}}
-  `)
-
-  assert.equal(this.$().text().trim(), 'template block text')
+  assert.equal(this.$('span.active').text().trim(), 'Borrow', 'Default create type is Borrow')
+  assert.equal(this.$('input').length, 2, 'Renders 2 inputs one for dollar and one for cents')
+  assert.equal(this.$('textarea').attr('placeholder'), 'Memo...', 'Renders textarea with correct placeholder')
+  assert.equal(this.$('button').text().trim(), 'Create', 'Renders button the create button with correct text')
+  assert.equal(this.$('i.close').length, 1, 'Renders an icon close button')
 })

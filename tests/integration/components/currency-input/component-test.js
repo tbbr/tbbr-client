@@ -1,26 +1,52 @@
 import { moduleForComponent, test } from 'ember-qunit'
+import { skip } from 'qunit'
 import hbs from 'htmlbars-inline-precompile'
+import Ember from 'ember'
 
 moduleForComponent('currency-input', 'Integration | Component | currency input', {
   integration: true
 })
 
-test('it renders', function(assert) {
-  assert.expect(2)
+test('it renders correct content', function(assert) {
+  this.render(hbs`{{currency-input dollars=12 cents=10}}`)
 
-  // Set any properties with this.set('myProperty', 'value')
-  // Handle any actions with this.on('myAction', function(val) { ... })
+  assert.equal(this.$('.input-dollar').val(), 12)
+  assert.equal(this.$('.input-cent').val(), 10)
+})
 
-  this.render(hbs`{{currency-input}}`)
+test('it does not allow out of range input', function(assert) {
 
-  assert.equal(this.$().text().trim(), '')
+  this.render(hbs`{{currency-input dollars=10000 cents=100}}`)
 
-  // Template block usage:
-  this.render(hbs`
-    {{#currency-input}}
-      template block text
-    {{/currency-input}}
-  `)
+  assert.equal(this.$('.input-dollar').val(), 9999)
+  assert.equal(this.$('.input-cent').val(), 99)
 
-  assert.equal(this.$().text().trim(), 'template block text')
+  this.render(hbs`{{currency-input dollars=-10 cents=-10}}`)
+
+  assert.equal(this.$('.input-dollar').val(), 10)
+  assert.equal(this.$('.input-cent').val(), 10)
+
+})
+
+skip('trigger keypress event and ensure dollars and cents are still valid', function(assert) {
+  this.render(hbs`{{currency-input dollars=12 cents=10}}`)
+
+  assert.equal(this.$('.input-dollar').val(), 12)
+  assert.equal(this.$('.input-cent').val(), 10)
+
+  const zeroKey = 48
+  const oneKey = 49
+  const twoKey = 50
+  const nineKey = 57
+
+  let zeroPress = Ember.$.Event("keypress")
+  zeroPress.which = zeroKey
+
+  this.$('.input-dollar').trigger(zeroPress)
+
+  assert.equal(this.$('.input-dollar').val(), 120)
+
+  this.$('.input-dollar').trigger(jQuery.Event('keypress', {which: zeroKey}))
+
+  assert.equal(this.$('.input-dollar').val(), 1200)
 })

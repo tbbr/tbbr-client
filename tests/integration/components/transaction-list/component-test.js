@@ -5,22 +5,26 @@ moduleForComponent('transaction-list', 'Integration | Component | transaction li
   integration: true
 })
 
-test('it renders', function(assert) {
+test('it renders correct content', function(assert) {
   assert.expect(2)
 
-  // Set any properties with this.set('myProperty', 'value')
-  // Handle any actions with this.on('myAction', function(val) { ... })
+  this.set('user', Ember.Object.create({name: 'Test User'}))
 
-  this.render(hbs`{{transaction-list}}`)
+  this.set('transactions', [
+    Ember.Object.create({type: 'Borrow', amount: 123}),
+    Ember.Object.create({type: 'Lend', amount: 456}),
+    Ember.Object.create({type: 'Borrow', amount: 789})
+  ])
 
-  assert.equal(this.$().text().trim(), '')
+  this.render(hbs`{{transaction-list user=user transactions=transactions}}`)
 
-  // Template block usage:
-  this.render(hbs`
-    {{#transaction-list}}
-      template block text
-    {{/transaction-list}}
-  `)
+  assert.equal(this.$('.transaction-card-content').length, 3, 'Renders 3 transaction-cards')
 
-  assert.equal(this.$().text().trim(), 'template block text')
+  this.set('transactions', [])
+
+  assert.equal(
+    this.$('.status-text').text().trim(),
+    'You currently have no transactions with Test User',
+    'Renders no transactions found message when an empty array of transactions are passed in'
+  )
 })

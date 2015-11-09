@@ -1,26 +1,28 @@
 import { moduleForComponent, test } from 'ember-qunit'
+import { skip } from 'qunit'
 import hbs from 'htmlbars-inline-precompile'
 
 moduleForComponent('login-form', 'Integration | Component | login form', {
   integration: true
 })
 
-test('it renders', function(assert) {
+test('it renders correct content', function(assert) {
   assert.expect(2)
-
-  // Set any properties with this.set('myProperty', 'value')
-  // Handle any actions with this.on('myAction', function(val) { ... })
-
   this.render(hbs`{{login-form}}`)
 
-  assert.equal(this.$().text().trim(), '')
+  assert.equal(this.$('.site-name').text().trim(), 'tbbr')
+  assert.equal(this.$('.btn--facebook-login').text().trim(), 'Login with Facebook')
+})
 
-  // Template block usage:
-  this.render(hbs`
-    {{#login-form}}
-      template block text
-    {{/login-form}}
-  `)
+skip('clicking on Login with Facebook button triggers an action', function(assert) {
+  assert.expect(1)
 
-  assert.equal(this.$().text().trim(), 'template block text')
+  this.on('loginFacebook', () => {
+    assert.equal(true, true, 'The loginFacebook action was called')
+  })
+
+  this.render(hbs`{{login-form loginFacebook=(action loginFacebook)}}`)
+
+  this.$('.btn--facebook-login').click()
+
 })

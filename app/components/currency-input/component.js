@@ -3,6 +3,33 @@ import Ember from 'ember'
 export default Ember.Component.extend({
   cents: null,
   dollars: null,
+
+  willInsertElement() {
+    let dollars = this.get('dollars')
+    let cents = this.get('cents')
+
+    if (dollars) {
+      dollars = Math.abs(parseInt(dollars))
+
+      if (dollars > 9999) {
+        dollars = 9999
+      }
+
+      this.set('dollars', dollars)
+    }
+
+    if (cents) {
+      if (cents != "0" && cents != "00") {
+        cents = Math.abs(parseInt(cents))
+      }
+
+      if (cents > 99) {
+        cents = 99
+      }
+
+      this.set('cents', cents)
+    }
+  },
   actions: {
     checkDollars: function(event) {
       let prevDollars = this.get('dollars')

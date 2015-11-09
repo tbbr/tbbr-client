@@ -5,22 +5,10 @@ moduleForComponent('site-header', 'Integration | Component | site header', {
   integration: true
 })
 
-test('it renders', function(assert) {
-  assert.expect(2)
-
-  // Set any properties with this.set('myProperty', 'value')
-  // Handle any actions with this.on('myAction', function(val) { ... })
+test('it renders correct content', function(assert) {
+  assert.expect(1)
 
   this.render(hbs`{{site-header}}`)
 
-  assert.equal(this.$().text().trim(), '')
-
-  // Template block usage:
-  this.render(hbs`
-    {{#site-header}}
-      template block text
-    {{/site-header}}
-  `)
-
-  assert.equal(this.$().text().trim(), 'template block text')
+  assert.equal(this.$('.logo').text().trim(), 'tbbr')
 })
