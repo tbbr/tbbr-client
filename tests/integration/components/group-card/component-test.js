@@ -19,7 +19,7 @@ test('it renders with the correct content', function(assert) {
 
   this.render(hbs`{{group-card group=group}}`)
 
-  assert.equal(this.$('.group-img').text().trim(), 'T')
-  assert.equal(this.$('.content .name a').text().trim(), 'Test')
-  assert.equal(this.$('.user-list li').length, 2)
+  assert.equal(this.$('.group-img').text().trim(), 'T', 'uses the first letter of the group name as image text')
+  assert.equal(this.$('.content .name a').text().trim(), 'Test', 'displays group name')
+  assert.equal(this.$('.user-list li').length, 2, 'has the correct number of users rendered')
 })

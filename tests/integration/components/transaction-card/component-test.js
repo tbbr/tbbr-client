@@ -25,9 +25,9 @@ test('it renders correct content', function(assert) {
 
   this.render(hbs`{{transaction-card transaction=transaction}}`)
 
-  assert.equal(this.$('span.name').first().text().trim(), 'Test User 2')
-  assert.equal(this.$('span.name').eq(1).text().trim(), 'Test User 1')
-  assert.equal(this.$('span.type').text().trim(), 'borrowed')
-  assert.equal(this.$('span.amount').text().trim(), '$24.40')
-  assert.equal(this.$('span.memo').text().trim(), 'Food')
+  assert.equal(this.$('span.name').first().text().trim(), 'Test User 2', 'Creator name is rendered properly')
+  assert.equal(this.$('span.name').eq(1).text().trim(), 'Test User 1', 'Related user name is renderd properly')
+  assert.equal(this.$('span.type').text().trim(), 'borrowed', 'The display type of the transaction is borrowed')
+  assert.equal(this.$('span.amount').text().trim(), '$24.40', 'The amount is formatted properly')
+  assert.equal(this.$('span.memo').text().trim(), 'Food', 'The memo is food')
 })
