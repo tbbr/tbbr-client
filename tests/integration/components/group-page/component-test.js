@@ -4,11 +4,8 @@ import hbs from 'htmlbars-inline-precompile'
 import Ember from 'ember'
 
 const sessionUserStub = Ember.Service.extend({
-  isAuthenticated: true,
-  current: Ember.Object.create({
-    id: '1',
-    name: 'Maaz'
-  })
+  isAuthenticated: false,
+  current: null
 })
 
 
@@ -16,13 +13,13 @@ moduleForComponent('group-page', 'Integration | Component | group page', {
   integration: true,
 
   beforeEach: function () {
-    this.register('service:location-service', locationStub);
-    this.inject.service('location-service', { as: 'location' });
+    this.register('service:session-user', sessionUserStub)
+    this.inject.service('session-user', { as: 'sessionUser' })
   }
 })
 
 
-skip('it renders nothing when user is not logged in', function(assert) {
+test('it renders nothing when user is not logged in', function(assert) {
   this.set('group', Ember.Object.create(
     {
       name: 'Test Group',
@@ -35,5 +32,5 @@ skip('it renders nothing when user is not logged in', function(assert) {
 
   this.render(hbs`{{group-page group=group}}`)
 
-  assert.equal(this.$().text(), '')
+  assert.equal(this.$().text(), '', 'Does not render anything when user is not logged in')
 })
