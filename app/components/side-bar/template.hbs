@@ -15,3 +15,13 @@
     <button type="button" class="btn" {{action "toggleCreatingGroup"}}>Create Group</button>
   {{/if}}
 </div>
+
+{{#if isToggleable}}
+<div class="toggle-handle" {{action "toggleSidebar"}}>
+  {{#if isClosed}}
+    <i class="fa fa-arrow-right"></i>
+  {{else}}
+    <i class="fa fa-arrow-left"></i>
+  {{/if}}
+</div>
+{{/if}}

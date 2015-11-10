@@ -10,6 +10,33 @@
   box-shadow: 2px 0px 20px 1px rgba(0,0,0,0.5);
   transition: all 0.3s ease-in-out;
 
+  &.toggleable {
+    position: absolute;
+  }
+
+  &.closed {
+    left: -$sideBarWidth - 10px;
+
+    .toggle-handle {
+      right: -57px;
+    }
+  }
+
+  .toggle-handle {
+    position: absolute;
+      top: 0;
+      right: -47px;
+    padding: 5px 15px;
+    background-color: $secondaryBase;
+    box-shadow: 3px 1px 6px 0px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+
+    .fa {
+      font-size: 20px;
+      color: $primaryBase;
+    }
+  }
+
   .status-text {
     padding: 20px 10px;
   }
