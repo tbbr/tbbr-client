@@ -49,7 +49,6 @@
     "ember-simple-auth": "^1.0.1",
     "eslint-config-ember": "0.0.5",
     "js-string-escape": "^1.0.0",
-    "phantomjs2": "^2.0.0",
     "torii": "^0.6.0"
   }
 }
