@@ -34,6 +34,24 @@ test('it renders a list of groups', function(assert) {
   assert.equal(this.$('ul li').length, 3, 'Renders 3 groups when an array of 3 groups is passed in')
 })
 
+test('it toggles the sidebar when the toggle-handle btn is clicked', function(assert) {
+  this.render(hbs`{{side-bar groups=groups isToggleable=true}}`)
+
+  assert.equal(this.$().hasClass('toggleable'), true, 'has the toggleable class')
+  assert.equal(this.$().hasClass('closed'), false, 'sidebar defaults to open')
+  assert.equal(this.$('.fa-arrow-left').length, 1, 'Toggle handle has the correct icon')
+
+  Ember.run(() => {this.$('.toggle-handle').click()})
+
+  assert.equal(this.$().hasClass('closed'), true, 'sidebar is closed')
+  assert.equal(this.$('.fa-arrow-right').length, 1, 'Toggle handle has the correct icon')
+
+  this.$('.toggle-handle').click()
+
+  assert.equal(this.$().hasClass('closed'), false, 'sidebar is closed')
+  assert.equal(this.$('.fa-arrow-left').length, 1, 'Toggle handle has the correct icon')
+})
+
 skip('calls toggleCreatingGroup action when Create Group button is clicked', function(assert) {
   assert.equal(1)
 
