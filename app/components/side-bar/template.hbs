@@ -10,8 +10,8 @@
 
   <h3 class="side-headers">Friends</h3>
   <ul>
-    {{#each groups as |group|}}
-      <li>{{group-card group=group}}</li>
+    {{#each friendships as |friendship|}}
+      <li>{{friendship-card friendship=friendship}}</li>
     {{else}}
       <h4 class="status-text text-uppercase">No Friends Found</h4>
     {{/each}}

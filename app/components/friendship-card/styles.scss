@@ -1,0 +1,46 @@
+& {
+  display: flex;
+  position: relative;
+  height: 70px;
+  border-bottom: 1px solid $secondaryDark;
+
+  .group-img {
+    width: $imgMd;
+    height: $imgMd;
+    background-size: cover;
+    background-position: center center;
+    margin: 10px;
+    background-color: $primaryBase;
+  }
+  .content {
+    margin: 5px 0;
+    text-align: left;
+    .name {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      height: 30px;
+      line-height: 30px;
+
+      a {
+        color: $grey400;
+      }
+
+      a.active {
+        color: $primaryBase;
+      }
+    }
+    .user-list {
+      li {
+        display: inline-block;
+      }
+      .user-avatar {
+        display: inline-block;
+        background-size: cover;
+        background-position: center center;
+        height: $imgSm;
+        width: $imgSm;
+      }
+    }
+  }
+}
