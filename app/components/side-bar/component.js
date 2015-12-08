@@ -1,7 +1,7 @@
 import Ember from 'ember'
 
 export default Ember.Component.extend({
-  classNameBindings: ['isToggleable:toggleable', 'isClosed:closed'],
+  classNameBindings: ['isToggleable:toggleable', 'isClosed:closed', 'isCreatingGroup:open-actionbar'],
 
   didInsertElement() {
     if (Ember.$(window).width() < 900) {
