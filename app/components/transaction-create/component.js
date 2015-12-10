@@ -36,17 +36,13 @@ export default Ember.Component.extend({
         return
       }
 
-      let relatedUser = this.get('user')
-      let curGroup = this.get('group')
-      let memo = this.get('memo')
-      let type = this.get('type')
-
       let transaction = this.get('store').createRecord('transaction', {
-        type: type,
+        type: this.get('type'),
         amount: amount,
-        memo: memo,
-        relatedUser: relatedUser,
-        groupId: curGroup.get('id')
+        memo: this.get('memo'),
+        relatedUser: this.get('relatedUser'),
+        relatedObjectType: this.get('relatedObjectType'),
+        relatedObjectId: this.get('relatedObjectId')
       })
 
       transaction.save().then(t => {

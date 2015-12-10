@@ -9,8 +9,9 @@
   </div>
   {{#if isCreatingTransaction}}
     {{transaction-create
-      group=group
-      user=friendship.friend
+      relatedObjectId=friendship.id
+      relatedObjectType="Friendship"
+      relatedUser=friendship.friend
       closeAction="closeTransactionCreateAction"
     }}
   {{/if}}

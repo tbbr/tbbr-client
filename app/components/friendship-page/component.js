@@ -10,18 +10,24 @@ export default Ember.Component.extend({
 
   userTransactions: function() {
     let friendId = this.get('friendship.friend.id')
-    let curUserId = this.get('sessionUser.current.id')
+    let relatedObjectId = this.get('friendship.id')
+    let curUserId = this.get('sessionUser').get('current.id')
 
     let transactions = this.get('store').filter('transaction', t => {
-      return (t.get('relatedUser.id') === friendId && t.get('creator.id') === curUserId) ||
-        (t.get('relatedUser.id') === curUserId && t.get('creator.id') === friendId)
+      if (t.get('relatedObjectId') == relatedObjectId && t.get('relatedObjectType') == 'Friendship') {
+        return (t.get('relatedUser.id') === friendId && t.get('creator.id') === curUserId) ||
+          (t.get('relatedUser.id') === curUserId && t.get('creator.id') === friendId)
+      } else {
+        return false
+      }
     })
     return transactions
   }.property('sessionUser.current', 'friendship', 'triggerUserTransactions'),
 
   getUserTransactions: function() {
     this.get('store').query('transaction', {
-      'groupId': null,
+      'relatedObjectId': this.get('friendship.id'),
+      'relatedObjectType': 'Friendship',
       'relatedUserId': this.get('friendship.friend.id')
     })
   }.observes('sessionUser.curent', 'friendship').on('init'),
@@ -31,6 +37,7 @@ export default Ember.Component.extend({
     let balance = 0
     let curUser = this.get('sessionUser.current')
     this.get('userTransactions').forEach(t => {
+      debugger
       if (t.get('type') === 'Borrow') {
         if (curUser.get('id') === t.get('creator.id')) {
           balance -= t.get('amount')

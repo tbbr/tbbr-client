@@ -15,12 +15,13 @@ export default Ember.Component.extend({
   triggerUserTransactions: 0,
 
   userTransactions: function() {
-    let groupId = this.get('group.id')
+    let relatedObjectId = this.get('group.id')
+    let relatedObjectType = "Group"
     let userId = this.get('user.id')
     let curUserId = this.get('sessionUser.current.id')
 
     let transactions = this.get('store').filter('transaction', t => {
-      if (t.get('groupId') == groupId) {
+      if (t.get('relatedObjectId') == relatedObjectId && t.get('relatedObjectType') == 'Group') {
         return (t.get('relatedUser.id') === userId && t.get('creator.id') === curUserId)||
           (t.get('relatedUser.id') === curUserId && t.get('creator.id') === userId)
       } else {
@@ -32,7 +33,8 @@ export default Ember.Component.extend({
 
   getUserTransactions: function() {
     this.get('store').query('transaction', {
-      'groupId': this.get('group.id'),
+      'relatedObjectId': this.get('group.id'),
+      'relatedObjectType': 'Group',
       'relatedUserId': this.get('user.id')
     })
   }.observes('sessionUser.curent', 'user', 'group').on('init'),
