@@ -48,6 +48,11 @@ export default Ember.Component.extend({
         this.$('.input-cent').focus()
       }
     },
+    keyDownDollarInput: function(event) {
+      if (event.which === 190) {
+        this.$('.input-cent').focus()
+      }
+    },
     checkCents: function(event) {
       let prevCents = this.get('cents')
       let c = event.target.value
@@ -76,6 +81,7 @@ export default Ember.Component.extend({
     keyDownCentInput: function(event) {
       let prevCents = this.get('cents')
 
+      // When backspace is pressed
       if (event.which === 8 && !prevCents && prevCents !== 0) {
         this.$('.input-dollar').focus()
         event.preventDefault()
@@ -85,10 +91,9 @@ export default Ember.Component.extend({
     },
     focusOutCentInput: function(event) {
       let cents = this.get('cents')
-
-      if (!cents)
+      if (!cents) {
         return
-
+      }
       cents = cents.toString()
 
       if (cents.length === 1 && cents < 10 && cents > 0) {
