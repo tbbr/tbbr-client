@@ -18,4 +18,9 @@
 </div>
 
 <div class="content-container">
+  {{transaction-list
+    user=friendship.friend
+    transactions=sortedUserTransactions
+    transactionUpdated="transactionUpdated"
+  }}
 </div>

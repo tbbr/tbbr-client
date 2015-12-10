@@ -5,6 +5,7 @@ $topBarHeight: 70px;
     position: relative;
     display: flex;
     margin: -20px;
+    margin-bottom: 0;
     padding: 0px 20px;
     height: $topBarHeight;
     border-bottom: 3px solid $secondaryDarker;
@@ -30,6 +31,13 @@ $topBarHeight: 70px;
       &.user-balance {
         font-size: 25px;
         color: $secondaryLighter;
+        
+        &.positive {
+          color: $primaryDark;
+        }
+        &.negative {
+          color: #FF5555;
+        }
       }
     }
 
@@ -60,5 +68,9 @@ $topBarHeight: 70px;
         transform: translate3d(0,0,0);
       }
     }
+  }
+
+  .content-container {
+    margin: 0 -20px;
   }
 }

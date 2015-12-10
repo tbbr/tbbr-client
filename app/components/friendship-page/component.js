@@ -8,6 +8,9 @@ export default Ember.Component.extend({
 
   classNameBindings: ['isCreatingTransaction:blurred'],
 
+  // TODO: big design flaw, will figure out later :(
+  triggerUserTransactions: 0,
+
   userTransactions: function() {
     let friendId = this.get('friendship.friend.id')
     let relatedObjectId = this.get('friendship.id')
@@ -24,6 +27,10 @@ export default Ember.Component.extend({
     return transactions
   }.property('sessionUser.current', 'friendship', 'triggerUserTransactions'),
 
+  sortedUserTransactions: function() {
+    return this.get('userTransactions').sortBy('createdAt').reverse()
+  }.property('userTransactions.[]'),
+
   getUserTransactions: function() {
     this.get('store').query('transaction', {
       'relatedObjectId': this.get('friendship.id'),
@@ -32,12 +39,10 @@ export default Ember.Component.extend({
     })
   }.observes('sessionUser.curent', 'friendship').on('init'),
 
-
   userBalance: function() {
     let balance = 0
     let curUser = this.get('sessionUser.current')
     this.get('userTransactions').forEach(t => {
-      debugger
       if (t.get('type') === 'Borrow') {
         if (curUser.get('id') === t.get('creator.id')) {
           balance -= t.get('amount')
@@ -79,6 +84,10 @@ export default Ember.Component.extend({
     },
     closeTransactionCreateAction: function() {
       this.set('isCreatingTransaction', false)
+    },
+    transactionUpdated: function() {
+      // TODO: I feel horrible about this :(
+      this.incrementProperty('triggerUserTransactions')
     }
   }
 })

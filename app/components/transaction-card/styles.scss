@@ -1,7 +1,7 @@
 & {
   position: relative;
-  padding: 10px;
-  border-bottom: 2px solid $secondaryDark;
+  padding: 10px 20px;
+  border-bottom: 1px solid $secondaryDarker;
 
   &.blurred {
     .transaction-card-content {
