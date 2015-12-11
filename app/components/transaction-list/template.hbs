@@ -4,5 +4,5 @@
     transactionUpdated="transactionUpdated"
   }}
 {{else}}
-  <h5 class="status-text center-align">You currently have no transactions with {{user.name}}</h5>
+  <h5 class="status-text center-align">You currently have no transactions {{#if user}}with {{user.name}}{{/if}}</h5>
 {{/each}}

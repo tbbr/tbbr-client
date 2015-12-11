@@ -14,7 +14,7 @@ export default Ember.Component.extend({
   userTransactions: function() {
     let friendId = this.get('friendship.friend.id')
     let relatedObjectId = this.get('friendship.id')
-    let curUserId = this.get('sessionUser').get('current.id')
+    let curUserId = this.get('sessionUser.session.data').authenticated.user_id.toString()
 
     let transactions = this.get('store').filter('transaction', t => {
       if (t.get('relatedObjectId') == relatedObjectId && t.get('relatedObjectType') == 'Friendship') {
@@ -25,7 +25,7 @@ export default Ember.Component.extend({
       }
     })
     return transactions
-  }.property('sessionUser.current', 'friendship', 'triggerUserTransactions'),
+  }.property('sessionUser.session', 'friendship', 'triggerUserTransactions'),
 
   sortedUserTransactions: function() {
     return this.get('userTransactions').sortBy('createdAt').reverse()
@@ -37,7 +37,7 @@ export default Ember.Component.extend({
       'relatedObjectType': 'Friendship',
       'relatedUserId': this.get('friendship.friend.id')
     })
-  }.observes('sessionUser.curent', 'friendship').on('init'),
+  }.observes('sessionUser.session', 'friendship').on('init'),
 
   userBalance: function() {
     let balance = 0

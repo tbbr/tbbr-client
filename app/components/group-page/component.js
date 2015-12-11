@@ -27,6 +27,25 @@ export default Ember.Component.extend({
     return inGroup
   }.property('group.users.[]', 'sessionUser.current'),
 
+  groupTransactions: function() {
+    let relatedObjectId = this.get('group.id')
+    let transactions = this.get('store').filter('transaction', t => {
+      return t.get('relatedObjectId') == relatedObjectId && t.get('relatedObjectType') == 'Group'
+    })
+    return transactions
+  }.property('group', 'triggerUserTransactions'),
+
+  sortedGroupTransactions: function() {
+    return this.get('groupTransactions').sortBy('createdAt').reverse()
+  }.property('groupTransactions.[]'),
+
+  getGroupTransactions: function() {
+    this.get('store').query('transaction', {
+      'relatedObjectId': this.get('group.id'),
+      'relatedObjectType': 'Group'
+    })
+  }.observes('group').on('init'),
+
   actions: {
     joinGroup: function() {
       let curUser = this.get('sessionUser.current')

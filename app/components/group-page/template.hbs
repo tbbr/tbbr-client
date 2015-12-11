@@ -12,6 +12,11 @@
         </div>
       {{/each}}
     </ul>
+
+    {{transaction-list
+      transactions=sortedGroupTransactions
+      transactionUpdated="transactionUpdated"
+    }}
   {{else}}
     <h1>{{group.name}}</h1>
     <button class="btn btn--primary" type="button" {{action "joinGroup"}}>Join Group</button>
