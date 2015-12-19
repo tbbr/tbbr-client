@@ -25,6 +25,14 @@ export default Ember.Component.extend({
     return this.get('type') === 'Lend'
   }.property('type'),
 
+  preview: function() {
+    let cents = this.get('cents') || 0
+    let dollars = this.get('dollars') || 0
+    let amount = (parseInt(dollars * 100) + parseInt(cents))/100
+
+    return `I ${this.get('type')}, $${amount.toFixed(2)}`
+  }.property('cents', 'dollars', 'type'),
+
   actions: {
     transactionCreate: function() {
       let cents = this.get('cents') || 0
