@@ -2,11 +2,13 @@ $topBarHeight: 70px;
 
 & {
   .top-bar {
-    position: relative;
+    position: absolute;
+      z-index: 1000;
     display: flex;
     margin: -20px;
     margin-bottom: 0;
     padding: 0px 20px;
+    width: 100%;
     height: $topBarHeight;
     border-bottom: 3px solid $secondaryDarker;
     box-shadow: 0px 9px 28px rgba(0, 0, 0, 0.6);
@@ -31,7 +33,7 @@ $topBarHeight: 70px;
       &.user-balance {
         font-size: 25px;
         color: $secondaryLighter;
-        
+
         &.positive {
           color: $primaryDark;
         }
@@ -51,9 +53,9 @@ $topBarHeight: 70px;
 
   &.blurred {
     .top-bar {
-      height: $topBarHeight + 40px;
+      height: 100%;
 
-      .avatar, .primary, .add-transaction {
+      .avatar, .primary, .add-transaction, {
         -webkit-filter: blur(7px);
         -moz-filter: blur(7px);
         -o-filter: blur(7px);
@@ -68,9 +70,24 @@ $topBarHeight: 70px;
         transform: translate3d(0,0,0);
       }
     }
+    .content-container {
+      -webkit-filter: blur(7px);
+      -moz-filter: blur(7px);
+      -o-filter: blur(7px);
+      -ms-filter: blur(7px);
+      filter: blur(7px);
+
+      // Force hardware acceleration
+      -webkit-transform: translate3d(0,0,0);
+      -moz-transform: translate3d(0,0,0);
+      -o-transform: translate3d(0,0,0);
+      -ms-transform: translate3d(0,0,0);
+      transform: translate3d(0,0,0);
+    }
   }
 
   .content-container {
     margin: 0 -20px;
+    padding-top: 50px;
   }
 }
