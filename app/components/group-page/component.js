@@ -18,14 +18,19 @@ export default Ember.Component.extend({
   }.property('group.users.[]'),
   currentUserInGroup: function() {
     let inGroup = false
-    let curUserId = this.get('sessionUser.current').get('id')
+    let curUserId = this.get('sessionUser.session.data').authenticated.user_id.toString()
     this.get('group').get('users').forEach((user) => {
       if (user.get('id') == curUserId) {
         inGroup = true
+        break
       }
     })
     return inGroup
   }.property('group.users.[]', 'sessionUser.current'),
+
+  isGroupEmpty: function() {
+    return this.get('group.users').length === 1
+  }.property('group.users.[]'),
 
   groupTransactions: function() {
     let relatedObjectId = this.get('group.id')
