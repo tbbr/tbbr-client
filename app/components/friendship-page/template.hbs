@@ -9,7 +9,7 @@
   </div>
   {{#if isCreatingTransaction}}
     {{transaction-create
-      relatedObjectId=friendship.id
+      relatedObjectId=friendship.friendshipDataId
       relatedObjectType="Friendship"
       relatedUser=friendship.friend
       closeAction="closeTransactionCreateAction"

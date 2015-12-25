@@ -13,7 +13,7 @@ export default Ember.Component.extend({
 
   userTransactions: function() {
     let friendId = this.get('friendship.friend.id')
-    let relatedObjectId = this.get('friendship.id')
+    let relatedObjectId = this.get('friendship.friendshipDataId')
     let curUserId = this.get('sessionUser.session.data').authenticated.user_id.toString()
 
     let transactions = this.get('store').filter('transaction', t => {
@@ -33,7 +33,7 @@ export default Ember.Component.extend({
 
   getUserTransactions: function() {
     this.get('store').query('transaction', {
-      'relatedObjectId': this.get('friendship.id'),
+      'relatedObjectId': this.get('friendship.friendshipDataId'),
       'relatedObjectType': 'Friendship',
       'relatedUserId': this.get('friendship.friend.id')
     })
