@@ -8,37 +8,36 @@ export default Ember.Component.extend({
 
   classNameBindings: ['isCreatingTransaction:blurred'],
 
-  isCreatingTransaction: false,
-  isShowTransactions: false,
-
   // TODO: big design flaw, will figure out later :(
   triggerUserTransactions: 0,
 
   userTransactions: function() {
-    let relatedObjectId = this.get('group.id')
-    let relatedObjectType = "Group"
-    let userId = this.get('user.id')
-    let curUserId = this.get('sessionUser.current.id')
+    let friendId = this.get('friendship.friend.id')
+    let relatedObjectId = this.get('friendship.id')
+    let curUserId = this.get('sessionUser.session.data').authenticated.user_id.toString()
 
     let transactions = this.get('store').filter('transaction', t => {
-      if (t.get('relatedObjectId') == relatedObjectId && t.get('relatedObjectType') == 'Group') {
-        return (t.get('relatedUser.id') === userId && t.get('creator.id') === curUserId)||
-          (t.get('relatedUser.id') === curUserId && t.get('creator.id') === userId)
+      if (t.get('relatedObjectId') == relatedObjectId && t.get('relatedObjectType') == 'Friendship') {
+        return (t.get('relatedUser.id') === friendId && t.get('creator.id') === curUserId) ||
+          (t.get('relatedUser.id') === curUserId && t.get('creator.id') === friendId)
       } else {
         return false
       }
     })
     return transactions
-  }.property('sessionUser.current', 'user', 'group', 'triggerUserTransactions'),
+  }.property('sessionUser.session', 'friendship', 'triggerUserTransactions'),
+
+  sortedUserTransactions: function() {
+    return this.get('userTransactions').sortBy('createdAt').reverse()
+  }.property('userTransactions.[]'),
 
   getUserTransactions: function() {
     this.get('store').query('transaction', {
-      'relatedObjectId': this.get('group.id'),
-      'relatedObjectType': 'Group',
-      'relatedUserId': this.get('user.id')
+      'relatedObjectId': this.get('friendship.id'),
+      'relatedObjectType': 'Friendship',
+      'relatedUserId': this.get('friendship.friend.id')
     })
-  }.observes('sessionUser.curent', 'user', 'group').on('init'),
-
+  }.observes('sessionUser.session', 'friendship').on('init'),
 
   userBalance: function() {
     let balance = 0
@@ -79,15 +78,9 @@ export default Ember.Component.extend({
     }
   }.observes('userBalance'),
 
-  isCreatingTransaction: false,
-  isShowTransactions: false,
-
   actions: {
     addTransaction: function() {
       this.set('isCreatingTransaction', true)
-    },
-    toggleShowTransactions: function() {
-      this.toggleProperty('isShowTransactions')
     },
     closeTransactionCreateAction: function() {
       this.set('isCreatingTransaction', false)

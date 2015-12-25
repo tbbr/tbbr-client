@@ -3,7 +3,10 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model: function() {
-    return this.store.findAll('group')
+    return Ember.RSVP.hash({
+      // groups: this.store.findAll('group'),
+      friendships: this.store.findAll('friendship')
+    })
   },
   setupController(controller, model) {
     controller.set('model', model)

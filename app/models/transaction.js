@@ -4,8 +4,9 @@ let Transaction = DS.Model.extend({
   type: DS.attr('string'),
   amount: DS.attr('number'),
   memo: DS.attr('string'),
+  relatedObjectType: DS.attr('string'),
+  relatedObjectId: DS.attr('number'),
   relatedUser: DS.belongsTo('user'),
-  groupId: DS.attr('number'),
   creator: DS.belongsTo('user'),
   createdAt: DS.attr('date')
 })

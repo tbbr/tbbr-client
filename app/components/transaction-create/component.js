@@ -25,6 +25,14 @@ export default Ember.Component.extend({
     return this.get('type') === 'Lend'
   }.property('type'),
 
+  preview: function() {
+    let cents = this.get('cents') || 0
+    let dollars = this.get('dollars') || 0
+    let amount = (parseInt(dollars * 100) + parseInt(cents))/100
+
+    return `I ${this.get('type')}, $${amount.toFixed(2)}`
+  }.property('cents', 'dollars', 'type'),
+
   actions: {
     transactionCreate: function() {
       let cents = this.get('cents') || 0
@@ -36,17 +44,13 @@ export default Ember.Component.extend({
         return
       }
 
-      let relatedUser = this.get('user')
-      let curGroup = this.get('group')
-      let memo = this.get('memo')
-      let type = this.get('type')
-
       let transaction = this.get('store').createRecord('transaction', {
-        type: type,
+        type: this.get('type'),
         amount: amount,
-        memo: memo,
-        relatedUser: relatedUser,
-        groupId: curGroup.get('id')
+        memo: this.get('memo'),
+        relatedUser: this.get('relatedUser'),
+        relatedObjectType: this.get('relatedObjectType'),
+        relatedObjectId: this.get('relatedObjectId')
       })
 
       transaction.save().then(t => {

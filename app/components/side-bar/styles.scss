@@ -1,3 +1,6 @@
+$actionBarClosedHeight: 52px;
+$actionBarOpenHeight: 180px;
+
 & {
   position: relative;
     left: 0;
@@ -9,6 +12,15 @@
   text-align: center;
   box-shadow: 2px 0px 20px 1px rgba(0,0,0,0.5);
   transition: all 0.3s ease-in-out;
+
+  > .bar-content {
+    height: calc(100% - 52px);
+    overflow-y: auto;
+  }
+
+  &.open-actionbar > .bar-content {
+    height: calc(100% - 180px);
+  }
 
   &.toggleable {
     position: absolute;
@@ -46,6 +58,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     border-bottom: 5px solid $secondaryDark;
+    box-shadow: 0px -4px 28px rgba(0,0,0,0.3);
   }
 
   .fixed-bottom {

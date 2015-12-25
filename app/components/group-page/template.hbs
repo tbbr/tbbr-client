@@ -1,19 +1,44 @@
-{{#if sessionUser.current}}
-  {{#if currentUserInGroup}}
-    <div class="group-title">{{group.name}}</div>
+{{#if currentUserInGroup}}
+  <div class="top-bar">
+    <div class="img--circle avatar" style="background-image: url('{{friendship.friend.avatarUrl}}')"></div>
+    <div class="content">
+      <div class="primary">
+        <span class="name">{{friendship.friend.name}}</span>
+        <span class="user-balance {{balanceStatus}}">{{displayBalance}}</span>
+      </div>
+      <button class="btn btn--primary add-transaction" {{action "addTransaction"}}>Add</button>
+    </div>
+    {{#if isCreatingTransaction}}
+      {{transaction-create
+        relatedObjectId=group.id
+        relatedObjectType="Group"
+        closeAction="closeTransactionCreateAction"
+      }}
+    {{/if}}
+  </div>
+  <div class="content-container">
     <ul>
-      {{#each filteredGroupUsers as |user|}}
+      {{#each users as |user|}}
         <li>{{user-card user=user group=group}}</li>
-      {{else}}
-        <div class="invite-user">
-          <div class="invite-text">Your group looks empty</div>
-          <div class="invite-text">Invite others with this link</div>
-          <input class="input input--darker" value={{inviteUrl}} readonly="true" {{action "inviteClick"}}>
-        </div>
       {{/each}}
     </ul>
-  {{else}}
-    <h1>{{group.name}}</h1>
+
+    {{#if isGroupEmpty}}
+      <div class="invite-user">
+        <div class="invite-text">Your group looks empty</div>
+        <div class="invite-text">Invite others with this link</div>
+        <input class="input input--darker" value={{inviteUrl}} readonly="true" {{action "inviteClick"}}>
+      </div>
+    {{/if}}
+
+    {{transaction-list
+      transactions=sortedGroupTransactions
+      transactionUpdated="transactionUpdated"
+    }}
+  </div>
+{{else}}
+  <div class="content-container">
+    <h1 class="center-align">{{group.name}}</h1>
     <button class="btn btn--primary" type="button" {{action "joinGroup"}}>Join Group</button>
-  {{/if}}
+  </div>
 {{/if}}

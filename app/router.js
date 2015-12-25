@@ -6,9 +6,11 @@ var Router = Ember.Router.extend({
 })
 
 Router.map(function() {
-  this.route('groups', {path: 'groups'}, function() {
-    this.route('group', {resetNamespace: true, path: '/:hashId'})
+  this.route('dashboard', {path: 'dashboard'}, function() {
+    // this.route('group', {resetNamespace: true, path: '/groups/:hashId'})
+    this.route('friendship', {resetNamespace: true, path: '/friendships/:hashId'})
   })
+
   this.route('login')
 })
 

@@ -1,0 +1,26 @@
+<div class="top-bar">
+  <div class="img--circle avatar" style="background-image: url('{{friendship.friend.avatarUrl}}')"></div>
+  <div class="content">
+    <div class="primary">
+      <span class="name">{{friendship.friend.name}}</span>
+      <span class="user-balance {{balanceStatus}}">{{displayBalance}}</span>
+    </div>
+    <button class="btn btn--primary add-transaction" {{action "addTransaction"}}>Add</button>
+  </div>
+  {{#if isCreatingTransaction}}
+    {{transaction-create
+      relatedObjectId=friendship.id
+      relatedObjectType="Friendship"
+      relatedUser=friendship.friend
+      closeAction="closeTransactionCreateAction"
+    }}
+  {{/if}}
+</div>
+
+<div class="content-container">
+  {{transaction-list
+    user=friendship.friend
+    transactions=sortedUserTransactions
+    transactionUpdated="transactionUpdated"
+  }}
+</div>

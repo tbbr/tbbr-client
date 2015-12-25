@@ -1,12 +1,13 @@
-<h3 class="side-headers">Your Groups</h3>
-
-<ul>
-  {{#each groups as |group|}}
-    <li>{{group-card group=group}}</li>
-  {{else}}
-    <h4 class="status-text text-uppercase">No Groups Found</h4>
-  {{/each}}
-</ul>
+<div class="bar-content">
+  <h3 class="side-headers">Friends</h3>
+  <ul>
+    {{#each friendships as |friendship|}}
+      <li>{{friendship-card friendship=friendship}}</li>
+    {{else}}
+      <h4 class="status-text text-uppercase">No Friends Found</h4>
+    {{/each}}
+  </ul>
+</div>
 
 <div class="fixed-bottom">
   {{#if isCreatingGroup}}

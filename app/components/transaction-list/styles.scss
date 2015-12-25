@@ -1,11 +1,5 @@
 & {
-  position: relative;
-  border-top: 3px solid $secondaryDark;
-  background-color: $secondaryBase;
-  max-height: 250px;
-  overflow: hidden;
-
   .status-text {
-    padding: 10px;
+    padding: 30px 10px;
   }
 }
