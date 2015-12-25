@@ -7,6 +7,8 @@ export default Ember.Component.extend({
   sessionUser: service('session-user'),
   store: service(),
 
+  classNameBindings: ['isCreatingTransaction:blurred'],
+
   inviteUrl: function() {
     return `${config.appHost}/groups/${this.get('group.hashId')}`
   }.property('group'),
@@ -16,13 +18,13 @@ export default Ember.Component.extend({
       return u.get('id') != this.get('sessionUser.current.id')
     })
   }.property('group.users.[]'),
+
   currentUserInGroup: function() {
     let inGroup = false
     let curUserId = this.get('sessionUser.session.data').authenticated.user_id.toString()
-    this.get('group').get('users').forEach((user) => {
+    this.get('group').get('users').forEach(user => {
       if (user.get('id') == curUserId) {
         inGroup = true
-        break
       }
     })
     return inGroup
@@ -61,6 +63,16 @@ export default Ember.Component.extend({
     },
     inviteClick: function() {
       this.$('.invite-user input').select()
+    },
+    addTransaction: function() {
+      this.set('isCreatingTransaction', true)
+    },
+    closeTransactionCreateAction: function() {
+      this.set('isCreatingTransaction', false)
+    },
+    transactionUpdated: function() {
+      // TODO: I feel horrible about this :(
+      this.incrementProperty('triggerUserTransactions')
     }
   }
 })

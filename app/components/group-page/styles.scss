@@ -2,15 +2,94 @@ $topBarHeight: 70px;
 
 & {
   .top-bar {
-    position: relative;
+    position: absolute;
+      z-index: 1000;
     display: flex;
     margin: -20px;
     margin-bottom: 0;
     padding: 0px 20px;
+    width: 100%;
     height: $topBarHeight;
     border-bottom: 3px solid $secondaryDarker;
     box-shadow: 0px 9px 28px rgba(0, 0, 0, 0.6);
     transition: all 0.2s ease;
+
+    .avatar {
+      background-size: cover;
+      background-position: center center;
+      margin: 10px 0;
+      margin-right: 20px;
+      width: $imgMd;
+      height: $imgMd;
+    }
+
+    .primary > span {
+      line-height: $topBarHeight;
+      font-weight: 300;
+      &.name {
+        font-size: 30px;
+        padding-right: 10px;
+      }
+      &.user-balance {
+        font-size: 25px;
+        color: $secondaryLighter;
+
+        &.positive {
+          color: $primaryDark;
+        }
+        &.negative {
+          color: #FF5555;
+        }
+      }
+    }
+
+    .btn.add-transaction {
+      position: absolute;
+        top: -16px;
+        right: 20px;
+      margin-top: $topBarHeight/2;
+    }
+  }
+
+  &.blurred {
+    .top-bar {
+      height: 100%;
+
+      .avatar, .primary, .add-transaction, {
+        -webkit-filter: blur(7px);
+        -moz-filter: blur(7px);
+        -o-filter: blur(7px);
+        -ms-filter: blur(7px);
+        filter: blur(7px);
+
+        // Force hardware acceleration
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+      }
+    }
+    .content-container {
+      -webkit-filter: blur(7px);
+      -moz-filter: blur(7px);
+      -o-filter: blur(7px);
+      -ms-filter: blur(7px);
+      filter: blur(7px);
+
+      // Force hardware acceleration
+      -webkit-transform: translate3d(0,0,0);
+      -moz-transform: translate3d(0,0,0);
+      -o-transform: translate3d(0,0,0);
+      -ms-transform: translate3d(0,0,0);
+      transform: translate3d(0,0,0);
+    }
+  }
+
+
+  .content-container {
+    margin: 0 -20px;
+    padding-top: 50px;
   }
 
   .group-title {

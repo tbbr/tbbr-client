@@ -16,25 +16,29 @@
       }}
     {{/if}}
   </div>
-  <ul>
-    {{#each users as |user|}}
-      <li>{{user-card user=user group=group}}</li>
-    {{/each}}
-  </ul>
+  <div class="content-container">
+    <ul>
+      {{#each users as |user|}}
+        <li>{{user-card user=user group=group}}</li>
+      {{/each}}
+    </ul>
 
-  {{#if isGroupEmpty}}
-    <div class="invite-user">
-      <div class="invite-text">Your group looks empty</div>
-      <div class="invite-text">Invite others with this link</div>
-      <input class="input input--darker" value={{inviteUrl}} readonly="true" {{action "inviteClick"}}>
-    </div>
-  {{/if}}
+    {{#if isGroupEmpty}}
+      <div class="invite-user">
+        <div class="invite-text">Your group looks empty</div>
+        <div class="invite-text">Invite others with this link</div>
+        <input class="input input--darker" value={{inviteUrl}} readonly="true" {{action "inviteClick"}}>
+      </div>
+    {{/if}}
 
-  {{transaction-list
-    transactions=sortedGroupTransactions
-    transactionUpdated="transactionUpdated"
-  }}
+    {{transaction-list
+      transactions=sortedGroupTransactions
+      transactionUpdated="transactionUpdated"
+    }}
+  </div>
 {{else}}
-  <h1>{{group.name}}</h1>
-  <button class="btn btn--primary" type="button" {{action "joinGroup"}}>Join Group</button>
+  <div class="content-container">
+    <h1 class="center-align">{{group.name}}</h1>
+    <button class="btn btn--primary" type="button" {{action "joinGroup"}}>Join Group</button>
+  </div>
 {{/if}}
