@@ -39,44 +39,16 @@ export default Ember.Component.extend({
     })
   }.observes('sessionUser.session', 'friendship').on('init'),
 
-  userBalance: function() {
-    let balance = 0
-    let curUser = this.get('sessionUser.current')
-    this.get('userTransactions').forEach(t => {
-      if (t.get('type') === 'Borrow') {
-        if (curUser.get('id') === t.get('creator.id')) {
-          balance -= t.get('amount')
-        } else {
-          balance += t.get('amount')
-        }
-      } else if (t.get('type') === 'Lend') {
-        if (curUser.get('id') === t.get('creator.id')) {
-          balance += t.get('amount')
-        } else {
-          balance -= t.get('amount')
-        }
-      }
-    })
-    return balance
-  }.property('userTransactions.[]'),
-
-  displayBalance: function() {
-    return "$" + (this.get('userBalance')/100).toFixed(2)
-  }.property('userBalance'),
-
-  setBalanceStatus: function() {
-    let balance = this.get('userBalance')
+  balanceStatus: function() {
+    let balance = this.get('friendship.balance')
 
     if (balance > 0) {
-      this.set('balanceStatus', 'positive')
+      return 'positive'
     } else if (balance < 0) {
-      this.set('balanceStatus', 'negative')
+      return 'negative'
     }
-
-    if (balance == 0) {
-      this.set('balanceStatus', '')
-    }
-  }.observes('userBalance'),
+    return ''
+  }.property('friendship.balance'),
 
   actions: {
     addTransaction: function() {

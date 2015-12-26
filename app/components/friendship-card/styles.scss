@@ -30,16 +30,14 @@
         color: $primaryBase;
       }
     }
-    .user-list {
-      li {
-        display: inline-block;
+    .user-balance {
+      color: $secondaryLighter;
+
+      &.positive {
+        color: $primaryDark;
       }
-      .user-avatar {
-        display: inline-block;
-        background-size: cover;
-        background-position: center center;
-        height: $imgSm;
-        width: $imgSm;
+      &.negative {
+        color: #FF5555;
       }
     }
   }
