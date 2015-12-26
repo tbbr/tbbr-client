@@ -13,7 +13,7 @@ let Friendship = DS.Model.extend({
 Friendship.reopen({
   formattedBalance: function() {
     return "$" + (this.get('balance')/100).toFixed(2)
-  }.property('amount').readOnly()
+  }.property('balance').readOnly()
 })
 
 export default Friendship

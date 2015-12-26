@@ -8,9 +8,6 @@ export default Ember.Component.extend({
 
   classNameBindings: ['isCreatingTransaction:blurred'],
 
-  // TODO: big design flaw, will figure out later :(
-  triggerUserTransactions: 0,
-
   userTransactions: function() {
     let friendId = this.get('friendship.friend.id')
     let relatedObjectId = this.get('friendship.friendshipDataId')
@@ -25,7 +22,7 @@ export default Ember.Component.extend({
       }
     })
     return transactions
-  }.property('sessionUser.session', 'friendship', 'triggerUserTransactions'),
+  }.property('sessionUser.session', 'friendship'),
 
   sortedUserTransactions: function() {
     return this.get('userTransactions').sortBy('createdAt').reverse()
@@ -56,10 +53,10 @@ export default Ember.Component.extend({
     },
     closeTransactionCreateAction: function() {
       this.set('isCreatingTransaction', false)
+      this.sendAction('reloadFriendship')
     },
-    transactionUpdated: function() {
-      // TODO: I feel horrible about this :(
-      this.incrementProperty('triggerUserTransactions')
+    updateBalance: function() {
+      this.sendAction('reloadFriendship')
     }
   }
 })
