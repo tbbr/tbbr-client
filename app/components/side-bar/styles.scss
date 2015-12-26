@@ -4,7 +4,7 @@ $actionBarOpenHeight: 180px;
 & {
   position: relative;
     left: 0;
-    z-index: 500;
+    z-index: 1100;
   width: $sideBarWidth;
   height: 100%;
   min-width: $sideBarWidth;
@@ -38,6 +38,7 @@ $actionBarOpenHeight: 180px;
     position: absolute;
       top: 0;
       right: -47px;
+      z-index: 1100;
     padding: 5px 15px;
     background-color: $secondaryBase;
     box-shadow: 3px 1px 6px 0px rgba(0, 0, 0, 0.5);

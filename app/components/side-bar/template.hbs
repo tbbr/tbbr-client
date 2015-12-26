@@ -13,7 +13,7 @@
   {{#if isCreatingGroup}}
     {{group-create cancelCreateAction="toggleCreatingGroup"}}
   {{else}}
-    <button type="button" class="btn" {{action "toggleCreatingGroup"}}>Create Group</button>
+    <button type="button" class="btn" disabled {{action "toggleCreatingGroup"}}>Create Group</button>
   {{/if}}
 </div>
 
