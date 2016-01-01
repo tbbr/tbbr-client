@@ -6,7 +6,8 @@ let Transaction = DS.Model.extend({
   memo: DS.attr('string'),
   relatedObjectType: DS.attr('string'),
   relatedObjectId: DS.attr('number'),
-  relatedUser: DS.belongsTo('user'),
+  sender: DS.belongsTo('user'),
+  recipient: DS.belongsTo('user'),
   creator: DS.belongsTo('user'),
   createdAt: DS.attr('date')
 })
