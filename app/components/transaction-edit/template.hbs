@@ -1,8 +1,13 @@
+<div class="transaction-paid">
+  {{ember-selectize
+    content=usersInvolved
+    optionValuePath="content.id"
+    optionLabelPath="content.name"
+    selection=sender
+    placeholder="Who paid?"
+  }}
+</div>
 <div class="transaction-content">
-  <div class="transaction-type">
-    <span class="{{if isBorrow "active"}}" {{action "changeType" "Borrow"}}>Borrow</span>
-    <span class="{{if isLend "active"}}" {{action "changeType" "Lend"}}>Lend</span>
-  </div>
   {{currency-input
     dollars=dollars
     cents=cents

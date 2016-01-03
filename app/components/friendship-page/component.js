@@ -6,23 +6,16 @@ export default Ember.Component.extend({
   sessionUser: service('session-user'),
   store: service(),
 
-  classNameBindings: ['isCreatingTransaction:blurred'],
+  classNameBindings: ['blurred:blurred'],
 
   userTransactions: function() {
-    let friendId = this.get('friendship.friend.id')
     let relatedObjectId = this.get('friendship.friendshipDataId')
-    let curUserId = this.get('sessionUser.session.data').authenticated.user_id.toString()
 
     let transactions = this.get('store').filter('transaction', t => {
-      if (t.get('relatedObjectId') == relatedObjectId && t.get('relatedObjectType') == 'Friendship') {
-        return (t.get('relatedUser.id') === friendId && t.get('creator.id') === curUserId) ||
-          (t.get('relatedUser.id') === curUserId && t.get('creator.id') === friendId)
-      } else {
-        return false
-      }
+      return t.get('relatedObjectId') == relatedObjectId && t.get('relatedObjectType') == 'Friendship'
     })
     return transactions
-  }.property('sessionUser.session', 'friendship'),
+  }.property('friendship.friendshipDataId'),
 
   sortedUserTransactions: function() {
     return this.get('userTransactions').sortBy('createdAt').reverse()
@@ -31,10 +24,13 @@ export default Ember.Component.extend({
   getUserTransactions: function() {
     this.get('store').query('transaction', {
       'relatedObjectId': this.get('friendship.friendshipDataId'),
-      'relatedObjectType': 'Friendship',
-      'relatedUserId': this.get('friendship.friend.id')
+      'relatedObjectType': 'Friendship'
     })
-  }.observes('sessionUser.session', 'friendship').on('init'),
+  }.observes('friendship').on('init'),
+
+  isBalanceNegative: function() {
+    return this.get('friendship.balance') < 0
+  }.property('friendship.balance'),
 
   balanceStatus: function() {
     let balance = this.get('friendship.balance')
@@ -47,12 +43,24 @@ export default Ember.Component.extend({
     return ''
   }.property('friendship.balance'),
 
+  usersInvolved: function() {
+    let curUser = this.get('sessionUser.current')
+    return [curUser, this.get('friendship.friend')]
+  }.property('sessionUser.current', 'friendship.friend'),
+
   actions: {
     addTransaction: function() {
       this.set('isCreatingTransaction', true)
+      this.set('blurred', true)
+    },
+    settleTransaction: function() {
+      this.set('isSettlingTransaction', true)
+      this.set('blurred', true)
     },
     closeTransactionCreateAction: function() {
       this.set('isCreatingTransaction', false)
+      this.set('isSettlingTransaction', false)
+      this.set('blurred', false)
       this.sendAction('reloadFriendship')
     },
     updateBalance: function() {

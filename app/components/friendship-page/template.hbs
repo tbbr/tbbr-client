@@ -5,13 +5,32 @@
       <span class="name">{{friendship.friend.name}}</span>
       <span class="user-balance {{balanceStatus}}">{{friendship.formattedBalance}}</span>
     </div>
-    <button class="btn btn--primary add-transaction" {{action "addTransaction"}}>Add</button>
   </div>
+  <button class="btn btn--primary add-transaction" {{action "addTransaction"}}>Add</button>
+  {{#if isBalanceNegative}}
+    <button class="btn settle-transaction" {{action "settleTransaction"}}>Settle</button>
+  {{/if}}
   {{#if isCreatingTransaction}}
     {{transaction-create
+      type="Bill"
       relatedObjectId=friendship.friendshipDataId
       relatedObjectType="Friendship"
       relatedUser=friendship.friend
+      usersInvolved=usersInvolved
+      closeAction="closeTransactionCreateAction"
+    }}
+  {{/if}}
+
+  {{#if isSettlingTransaction}}
+    {{transaction-create
+      type="Payback"
+      dollars=friendship.dollars
+      cents=friendship.cents
+      memo="Settling up remaining balance"
+      relatedObjectId=friendship.friendshipDataId
+      relatedObjectType="Friendship"
+      relatedUser=friendship.friend
+      usersInvolved=usersInvolved
       closeAction="closeTransactionCreateAction"
     }}
   {{/if}}
