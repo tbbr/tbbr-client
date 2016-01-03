@@ -3,12 +3,15 @@ import Ember from 'ember'
 const { service } = Ember.inject
 
 export default Ember.Component.extend({
-  classNames: ['fade-in', 'animation-duration-300s'],
-
+  sessionUser: service('session-user'),
   store: service(),
 
-  sender: null,
-  type: 'Bill',
+  classNames: ['fade-in', 'animation-duration-300s'],
+
+  sender: function() {
+    return this.get('sessionUser.current')
+  }.property('sessionUser.current'),
+
   dollars: null,
   cents: null,
   memo: '',
@@ -27,6 +30,10 @@ export default Ember.Component.extend({
 
     return `${senderName} paid $${amount.toFixed(2)} for ${memo}`
   }.property('cents', 'dollars', 'sender', 'memo'),
+
+  isPayback: function() {
+    return this.get('type') === 'Payback'
+  }.property('type'),
 
   actions: {
     transactionCreate: function() {
@@ -60,8 +67,6 @@ export default Ember.Component.extend({
         relatedObjectType: this.get('relatedObjectType'),
         relatedObjectId: this.get('relatedObjectId')
       })
-
-      debugger
 
       transaction.save().then(t => {
         this.sendAction('closeAction')

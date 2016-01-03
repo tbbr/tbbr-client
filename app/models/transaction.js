@@ -9,7 +9,9 @@ let Transaction = DS.Model.extend({
   sender: DS.belongsTo('user'),
   recipient: DS.belongsTo('user'),
   creator: DS.belongsTo('user'),
-  createdAt: DS.attr('date')
+  createdAt: DS.attr('Date', {
+    defaultValue: function() { return new Date() }
+  })
 })
 
 Transaction.reopen({

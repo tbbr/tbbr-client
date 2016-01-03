@@ -1,3 +1,4 @@
+{{#unless isPayback}}
 <div class="transaction-paid">
   {{ember-selectize
     content=usersInvolved
@@ -7,6 +8,7 @@
     placeholder="Who paid?"
   }}
 </div>
+{{/unless}}
 <div class="transaction-content">
   {{currency-input
     dollars=dollars

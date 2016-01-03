@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   sessionUser: service('session-user'),
   store: service(),
 
-  classNameBindings: ['isCreatingTransaction:blurred'],
+  classNameBindings: ['blurred:blurred'],
 
   userTransactions: function() {
     let relatedObjectId = this.get('friendship.friendshipDataId')
@@ -28,6 +28,10 @@ export default Ember.Component.extend({
     })
   }.observes('friendship').on('init'),
 
+  isBalanceNegative: function() {
+    return this.get('friendship.balance') < 0
+  }.property('friendship.balance'),
+
   balanceStatus: function() {
     let balance = this.get('friendship.balance')
 
@@ -47,9 +51,16 @@ export default Ember.Component.extend({
   actions: {
     addTransaction: function() {
       this.set('isCreatingTransaction', true)
+      this.set('blurred', true)
+    },
+    settleTransaction: function() {
+      this.set('isSettlingTransaction', true)
+      this.set('blurred', true)
     },
     closeTransactionCreateAction: function() {
       this.set('isCreatingTransaction', false)
+      this.set('isSettlingTransaction', false)
+      this.set('blurred', false)
       this.sendAction('reloadFriendship')
     },
     updateBalance: function() {
