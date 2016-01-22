@@ -17,6 +17,17 @@
     }
   }
 
+  .memo {
+    border-left: 4px solid $secondaryLight;
+    padding: 3px 5px;
+    margin: 10px;
+    color: $grey600;
+
+    &:hover {
+      color: $grey500;
+    }
+  }
+
   .sub-line {
     color: $grey600;
     text-align: right;

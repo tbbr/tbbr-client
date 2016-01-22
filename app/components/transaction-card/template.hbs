@@ -3,9 +3,9 @@
     <span class="name">{{transaction.sender.name}}</span>
     <span class="type">paid</span>
     <span class="amount">{{transaction.formattedAmount}}</span>
-    {{#if transaction.memo}}for{{/if}}
-    <span class="memo">{{transaction.memo}}</span>
   </div>
+
+  <div class="memo">{{transaction.memo}}</div>
 
   <div class="sub-line">
     {{#if isCreatorCurrentUser}}
