@@ -46,7 +46,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'development') {
-    ENV.apiHost = '//localhost:8080'
+    ENV.apiHost = '//localhost:8090'
     ENV.appHost = 'http://localhost:4200'
     // ENV.APP.LOG_RESOLVER = true
     // ENV.APP.LOG_ACTIVE_GENERATION = true
