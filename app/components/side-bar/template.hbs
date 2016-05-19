@@ -1,7 +1,9 @@
 <div class="bar-content">
-  <h3 class="side-headers">Friends</h3>
+  <div class="side-header-input">
+    {{input type="text" placeholder="Search Friends..." value=(mut filterText)}}
+  </div>
   <ul>
-    {{#each friendships as |friendship|}}
+    {{#each filteredFriendships as |friendship|}}
       <li>{{friendship-card friendship=friendship}}</li>
     {{else}}
       <h4 class="status-text text-uppercase">No Friends Found</h4>

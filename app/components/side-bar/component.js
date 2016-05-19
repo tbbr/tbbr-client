@@ -20,6 +20,17 @@ export default Ember.Component.extend({
       }
     })
   },
+
+  filterText: "",
+
+  filteredFriendships: function() {
+    return this.get('friendships').filter((item) => {
+      var friendName = item.get('friend.name').toLowerCase()
+      var filterText = this.get('filterText').toLowerCase()
+      return friendName.indexOf(filterText) > -1
+    })
+  }.property('friendships.@each.friend.name', 'filterText'),
+
   isCreatingGroup: false,
   actions: {
     toggleCreatingGroup: function() {
