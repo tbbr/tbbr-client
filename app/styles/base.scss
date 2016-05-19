@@ -73,6 +73,19 @@ textarea {
    color: $grey600;
 }
 
+
+// Webkit scrollbar 
+::-webkit-scrollbar {
+    width:  7px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(115,115,115,0.7);
+}
+::-webkit-scrollbar-track {
+    background: rgba(115,115,115,0.2);
+}
+
+
 input:focus, textarea:focus {
   outline: none;
   border-color: $primaryBase;
