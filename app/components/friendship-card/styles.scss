@@ -1,7 +1,9 @@
+$cardHeight: 60px;
+
 & {
   display: flex;
   position: relative;
-  height: 70px;
+  height: $cardHeight;
   border-bottom: 1px solid $secondaryDark;
 
   .group-img {
@@ -13,14 +15,14 @@
     background-color: $primaryBase;
   }
   .content {
-    margin: 5px 0;
+    margin: 10px 0;
     text-align: left;
     .name {
       display: block;
       text-transform: uppercase;
       letter-spacing: 1px;
-      height: 30px;
-      line-height: 30px;
+      height: 20px;
+      line-height: 20px;
 
       a {
         color: $grey400;

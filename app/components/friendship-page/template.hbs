@@ -6,10 +6,10 @@
       <span class="user-balance {{balanceStatus}}">{{friendship.formattedBalance}}</span>
     </div>
   </div>
-  <button class="btn btn--primary add-transaction" {{action "addTransaction"}}>Add</button>
   {{#if isBalanceNegative}}
     <button class="btn settle-transaction" {{action "settleTransaction"}}>Settle</button>
   {{/if}}
+  <button class="btn btn--primary add-transaction" {{action "addTransaction"}}>Add</button>
   {{#if isCreatingTransaction}}
     {{transaction-create
       type="Bill"

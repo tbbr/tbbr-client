@@ -1,4 +1,6 @@
-$topBarHeight: 70px;
+$topBarHeight: 60px;
+$addTransactionBtnWidth: 64px;
+$addTransactionBtnRightPos: 20px;
 
 & {
   .top-bar {
@@ -18,7 +20,7 @@ $topBarHeight: 70px;
       background-size: cover;
       background-position: center center;
       margin: 10px 0;
-      margin-right: 20px;
+      margin-right: 10px;
       width: $imgMd;
       height: $imgMd;
     }
@@ -27,11 +29,11 @@ $topBarHeight: 70px;
       line-height: $topBarHeight;
       font-weight: 300;
       &.name {
-        font-size: 30px;
-        padding-right: 10px;
+        font-size: 23px;
+        padding-right: 5px;
       }
       &.user-balance {
-        font-size: 25px;
+        font-size: 20px;
         color: $secondaryLighter;
 
         &.positive {
@@ -46,8 +48,18 @@ $topBarHeight: 70px;
     .btn.add-transaction {
       position: absolute;
         top: -16px;
-        right: 20px;
+        right: $addTransactionBtnRightPos;
       margin-top: $topBarHeight/2;
+      padding: 0 15px;
+      width: 64px
+    }
+
+    .btn.settle-transaction {
+      position: absolute;
+        top: -16px;
+        right: $addTransactionBtnWidth + $addTransactionBtnRightPos + 10px;
+      margin-top: $topBarHeight/2;
+      padding: 0 15px;
     }
   }
 
