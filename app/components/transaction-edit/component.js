@@ -22,6 +22,10 @@ export default Ember.Component.extend({
     return cents.toString().length < 2 ? "0" + cents.toString() : cents.toString()
   }.property('transaction.amount'),
 
+  isPayback: function() {
+    return this.get('transaction.type') === 'Payback'
+  }.property('type'),
+
   usersInvolved: function() {
     return [this.get('transaction.sender'), this.get('transaction.recipient')]
   }.property('transaction.sender', 'transaction.recipient'),

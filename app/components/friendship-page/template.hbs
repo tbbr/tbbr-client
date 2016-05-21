@@ -24,8 +24,8 @@
   {{#if isSettlingTransaction}}
     {{transaction-create
       type="Payback"
-      dollars=friendship.dollars
-      cents=friendship.cents
+      dollars=friendship.dollarsAbs
+      cents=friendship.centsAbs
       memo="Settling up remaining balance"
       relatedObjectId=friendship.friendshipDataId
       relatedObjectType="Friendship"

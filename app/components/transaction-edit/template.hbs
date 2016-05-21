@@ -8,10 +8,12 @@
   }}
 </div>
 <div class="transaction-content">
-  {{currency-input
-    dollars=dollars
-    cents=cents
-  }}
+  {{#unless isPayback}}
+    {{currency-input
+      dollars=dollars
+      cents=cents
+    }}
+  {{/unless}}
   {{textarea type="text" value=transaction.memo maxlength="140" placeholder="Memo..." rows="1"}}
   <button class="btn" {{action "transactionSave"}}>Save</button>
   <i class="fa fa-times close" {{action "close"}}></i>
