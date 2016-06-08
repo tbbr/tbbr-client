@@ -28,5 +28,5 @@ test('it renders correct content', function(assert) {
   assert.equal(this.$('.logo').text().trim(), 'tbbr', 'renders the site name in correct position')
   assert.equal(this.$('.user-info span').text().trim(), 'Test User', 'renders the name of the user currently logged in')
 
-  assert.equal(this.$('.user-info .avatar').css('background-image'), 'url(http://testimage.com/image.jpg)', 'renders the avatar of the user currently logged in')
+  assert.equal(this.$('.user-info .avatar').css('background-image'), 'url(\"http://testimage.com/image.jpg\")', 'renders the avatar of the user currently logged in')
 })
