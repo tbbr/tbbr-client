@@ -11,7 +11,8 @@ let Transaction = DS.Model.extend({
   creator: DS.belongsTo('user'),
   createdAt: DS.attr('Date', {
     defaultValue: function() { return new Date() }
-  })
+  }),
+  is_settled: DS.attr('boolean')
 })
 
 Transaction.reopen({
