@@ -61,6 +61,7 @@ export default Ember.Component.extend({
       let transaction = this.get('store').createRecord('transaction', {
         type: this.get('type'),
         amount: amount,
+        status: "Confirmed", // TODO: Default it to pending, and have functionality to confirm / reject transaction
         memo: this.get('memo').trim(),
         sender: this.get('sender'),
         recipient: recipient,
