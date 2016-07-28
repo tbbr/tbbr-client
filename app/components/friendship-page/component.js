@@ -27,7 +27,6 @@ export default Ember.Component.extend({
     let relatedObjectId = this.get('friendship.friendshipDataId')
 
     let settledTransactions = this.get('store').filter('transaction', t => {
-      console.log(t.get('memo'))
       return t.get('relatedObjectId') == relatedObjectId &&
       t.get('relatedObjectType') == 'Friendship' && t.get('is_settled') == true
     })
@@ -84,7 +83,6 @@ export default Ember.Component.extend({
       this.sendAction('reloadFriendship')
     },
     wantsSettled: function() {
-      console.log('wantsSettled function is firing')
       this.toggleProperty('wantsSettledTransactions', true);
     }
   }
