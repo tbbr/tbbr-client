@@ -14,7 +14,8 @@ export default Ember.Component.extend({
 
     let transactions = this.get('store').filter('transaction', t => {
       return t.get('relatedObjectId') == relatedObjectId
-      && t.get('relatedObjectType') == 'Friendship'
+      && t.get('relatedObjectType') == 'Friendship' 
+      && t.get('isSettled') == false
     })
     return transactions
   }.property('friendship.friendshipDataId'),
@@ -28,14 +29,14 @@ export default Ember.Component.extend({
 
     let settledTransactions = this.get('store').filter('transaction', t => {
       return t.get('relatedObjectId') == relatedObjectId &&
-      t.get('relatedObjectType') == 'Friendship' && t.get('is_settled') == true
+      t.get('relatedObjectType') == 'Friendship' && t.get('isSettled') == true
     })
     return settledTransactions
   }.property('friendship.friendshipDataId'),
 
   sortedUserSettledTransactions: function() {
     return this.get('userSettledTransactions').sortBy('createdAt').reverse()
-  }.property('userTransactions.[]'),
+  }.property('userSettledTransactions.[]'),
 
   getUserTransactions: function() {
     this.get('store').query('transaction', {
