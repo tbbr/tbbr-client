@@ -63,6 +63,10 @@ $addTransactionBtnRightPos: 20px;
     }
   }
 
+  .btn--full-width {
+    width: 100%
+  }
+
   &.blurred {
     .top-bar {
       height: 100%;
