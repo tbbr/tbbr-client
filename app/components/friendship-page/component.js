@@ -14,7 +14,7 @@ export default Ember.Component.extend({
 
     let transactions = this.get('store').filter('transaction', t => {
       return t.get('relatedObjectId') == relatedObjectId
-      && t.get('relatedObjectType') == 'Friendship' 
+      && t.get('relatedObjectType') == 'Friendship'
       && t.get('isSettled') == false
     })
     return transactions

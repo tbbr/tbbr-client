@@ -43,15 +43,16 @@
     transactionUpdated="updateBalance"
   }}
 
-  <button class="btn settle-transaction" {{action 'wantsSettled'}}>
+  <button class="btn settle-transaction" {{action 'wantsSettled'}} style="width:100%">
     click to see the settled transactions
   </button>
 
   {{# if wantsSettledTransactions}}
-    {{settled-list
+    {{transaction-list
       user=friendship.friend
       transactions=userSettledTransactions
       transactionUpdated="updateBalance"
+      settledTransaction=true
     }}
   {{/if}}
 </div>

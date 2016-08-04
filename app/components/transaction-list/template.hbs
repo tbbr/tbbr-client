@@ -2,7 +2,11 @@
   {{transaction-card
     transaction=transaction
     transactionUpdated="transactionUpdated"
+    settledTransaction=settledTransaction
   }}
 {{else}}
-  <h5 class="status-text center-align">You currently have no transactions {{#if user}}with {{user.name}}{{/if}}</h5>
+  <h5 class="status-text center-align">You currently have no
+    {{#if settledTransaction}} settled {{/if}} transactions
+    {{#if user}}with {{user.name}}{{/if}}
+  </h5>
 {{/each}}
