@@ -53,14 +53,6 @@ $addTransactionBtnRightPos: 20px;
       padding: 0 15px;
       width: 64px
     }
-
-    .btn.settle-transaction {
-      position: absolute;
-        top: -16px;
-        right: $addTransactionBtnWidth + $addTransactionBtnRightPos + 10px;
-      margin-top: $topBarHeight/2;
-      padding: 0 15px;
-    }
   }
 
   .btn--full-width {
