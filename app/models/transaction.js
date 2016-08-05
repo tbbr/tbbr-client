@@ -3,6 +3,7 @@ import DS from 'ember-data'
 let Transaction = DS.Model.extend({
   type: DS.attr('string'),
   amount: DS.attr('number'),
+  isSettled: DS.attr('boolean'),
   memo: DS.attr('string'),
   status: DS.attr('string'),
   relatedObjectType: DS.attr('string'),
@@ -12,7 +13,7 @@ let Transaction = DS.Model.extend({
   creator: DS.belongsTo('user'),
   createdAt: DS.attr('Date', {
     defaultValue: function() { return new Date() }
-  })
+  }),
 })
 
 Transaction.reopen({

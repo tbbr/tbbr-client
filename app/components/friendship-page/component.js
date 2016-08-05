@@ -7,12 +7,15 @@ export default Ember.Component.extend({
   store: service(),
 
   classNameBindings: ['blurred:blurred'],
+  wantsSettledTransactions: false,
 
   userTransactions: function() {
     let relatedObjectId = this.get('friendship.friendshipDataId')
 
     let transactions = this.get('store').filter('transaction', t => {
-      return t.get('relatedObjectId') == relatedObjectId && t.get('relatedObjectType') == 'Friendship'
+      return t.get('relatedObjectId') == relatedObjectId
+      && t.get('relatedObjectType') == 'Friendship'
+      && t.get('isSettled') == false
     })
     return transactions
   }.property('friendship.friendshipDataId'),
@@ -20,6 +23,20 @@ export default Ember.Component.extend({
   sortedUserTransactions: function() {
     return this.get('userTransactions').sortBy('createdAt').reverse()
   }.property('userTransactions.[]'),
+
+  userSettledTransactions: function() {
+    let relatedObjectId = this.get('friendship.friendshipDataId')
+
+    let settledTransactions = this.get('store').filter('transaction', t => {
+      return t.get('relatedObjectId') == relatedObjectId &&
+      t.get('relatedObjectType') == 'Friendship' && t.get('isSettled') == true
+    })
+    return settledTransactions
+  }.property('friendship.friendshipDataId'),
+
+  sortedUserSettledTransactions: function() {
+    return this.get('userSettledTransactions').sortBy('createdAt').reverse()
+  }.property('userSettledTransactions.[]'),
 
   getUserTransactions: function() {
     this.get('store').query('transaction', {
@@ -65,6 +82,9 @@ export default Ember.Component.extend({
     },
     updateBalance: function() {
       this.sendAction('reloadFriendship')
+    },
+    wantsSettled: function() {
+      this.toggleProperty('wantsSettledTransactions', true);
     }
   }
 })

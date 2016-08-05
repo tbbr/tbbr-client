@@ -42,4 +42,17 @@
     transactions=sortedUserTransactions
     transactionUpdated="updateBalance"
   }}
+
+  <button class="btn btn--full-width" {{action 'wantsSettled'}} >
+    click to see the settled transactions
+  </button>
+
+  {{# if wantsSettledTransactions}}
+    {{transaction-list
+      user=friendship.friend
+      transactions=userSettledTransactions
+      transactionUpdated="updateBalance"
+      settledTransaction=true
+    }}
+  {{/if}}
 </div>
