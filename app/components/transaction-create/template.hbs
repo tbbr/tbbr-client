@@ -12,8 +12,7 @@
 <div class="transaction-content">
   {{#unless isPayback}}
     {{currency-input
-      dollars=dollars
-      cents=cents
+      amount=amount
     }}
   {{/unless}}
   {{textarea type="text" value=memo maxlength="140" placeholder="Memo..." rows="1"}}

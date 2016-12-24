@@ -12,24 +12,23 @@ export default Ember.Component.extend({
     return this.get('sessionUser.current')
   }.property('sessionUser.current'),
 
-  dollars: null,
-  cents: null,
+  // didInsertElement() {
+  //   if (this.get('isPayback')) {
+  //     this.set('amount', this.get)
+  //   }
+  // }
+
+  amount: null,
   memo: '',
 
-  setup: function() {
-    let self = this
-    this.$('.input-dollar').focus()
-  }.on('didInsertElement'),
-
   preview: function() {
-    let cents = this.get('cents') || 0
-    let dollars = this.get('dollars') || 0
-    let amount = (parseInt(dollars * 100) + parseInt(cents))/100
+    let amount = this.get('amount') / 100 || 0;
+    console.log(amount)
     let memo = this.get('memo')
     let senderName = this.get('sender.name') || ''
 
     return `${senderName} paid $${amount.toFixed(2)} for ${memo}`
-  }.property('cents', 'dollars', 'sender', 'memo'),
+  }.property('amount', 'sender', 'memo'),
 
   isPayback: function() {
     return this.get('type') === 'Payback'
@@ -37,10 +36,8 @@ export default Ember.Component.extend({
 
   actions: {
     transactionCreate: function() {
-      let cents = this.get('cents') || 0
-      let dollars = this.get('dollars') || 0
       let sender = this.get('sender')
-      let amount = parseInt(dollars * 100) + parseInt(cents)
+      let amount = this.get('amount') || 0
       let usersInvolved = this.get('usersInvolved')
       let recipient
 

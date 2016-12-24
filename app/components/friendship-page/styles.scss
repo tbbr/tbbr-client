@@ -40,7 +40,7 @@ $addTransactionBtnRightPos: 20px;
           color: $primaryDark;
         }
         &.negative {
-          color: #FF5555;
+          color: $redShade;
         }
       }
     }

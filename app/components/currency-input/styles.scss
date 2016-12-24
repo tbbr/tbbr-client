@@ -4,7 +4,7 @@
   padding: 5px;
   font-size: 30px;
   min-width: 155px;
-  
+
   &:before {
     content: "$";
     color: $primaryBase;
@@ -24,24 +24,20 @@
     border-radius: 0;
     border-bottom: 1px solid $grey400;
     background: transparent;
+    text-align: right;
+    width: 120px;
 
     &:focus {
       border-color: $primaryBase;
     }
   }
 
-  input:first-of-type {
-    margin-right: -5px;
-    text-align: right;
-    width: 70px;
-
-    &::after {
-      content: ".";
+  &.invalid {
+    input {
+      border-color: $redShade;
     }
-  }
-
-  input:last-of-type {
-    margin-left: -5px;
-    width: 35px;
+    &:before {
+      color: $redShade;
+    }
   }
 }

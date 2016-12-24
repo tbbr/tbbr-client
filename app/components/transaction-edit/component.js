@@ -13,15 +13,6 @@ export default Ember.Component.extend({
     return this.get('transaction.sender')
   }.property('transaction.sender'),
 
-  dollars: function() {
-    return parseInt(this.get('transaction.amount')/100)
-  }.property('transaction.amount'),
-
-  cents: function() {
-    let cents = this.get('transaction.amount') % 100
-    return cents.toString().length < 2 ? "0" + cents.toString() : cents.toString()
-  }.property('transaction.amount'),
-
   isPayback: function() {
     return this.get('transaction.type') === 'Payback'
   }.property('type'),
@@ -32,9 +23,9 @@ export default Ember.Component.extend({
 
   actions: {
     transactionSave: function() {
-      let cents = this.get('cents') || 0
-      let dollars = this.get('dollars') || 0
-      let amount = parseInt(dollars * 100) + parseInt(cents)
+      console.log(this.get('transaction.amount'))
+      let amount = parseInt(this.get('transaction.amount'))
+      console.log(amount)
       let sender = this.get('sender')
       let usersInvolved = this.get('usersInvolved')
       let recipient
