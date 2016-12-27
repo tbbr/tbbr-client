@@ -17,7 +17,6 @@ export default Ember.Component.extend({
 
   preview: function() {
     let amount = this.get('amount') / 100 || 0;
-    console.log(amount)
     let memo = this.get('memo')
     let senderName = this.get('sender.name') || ''
 

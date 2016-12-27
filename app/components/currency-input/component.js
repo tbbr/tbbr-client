@@ -23,7 +23,6 @@ export default Ember.Component.extend({
       if (checkAmount.test(event.target.value)) {
         this.set('isInvalid', false)
         this.set('amount', parseInt(event.target.value*100))
-        console.log(this.get('amount'))
       } else {
         this.set('isInvalid', true)
         this.set('amount', null)
