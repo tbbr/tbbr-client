@@ -18,7 +18,7 @@ let Transaction = DS.Model.extend({
 
 Transaction.reopen({
   formattedAmount: function() {
-    return "$" + (this.get('amount')/100).toFixed(2)
+    return "$" + Number((this.get('amount')/100).toFixed(2)).toLocaleString()
   }.property('amount').readOnly()
 })
 

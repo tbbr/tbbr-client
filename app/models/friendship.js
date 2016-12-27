@@ -12,7 +12,7 @@ let Friendship = DS.Model.extend({
 
 Friendship.reopen({
   formattedBalance: function() {
-    return "$" + (this.get('balance')/100).toFixed(2)
+    return "$" + Number((this.get('balance')/100).toFixed(2)).toLocaleString()
   }.property('balance').readOnly(),
 
   dollars: function() {

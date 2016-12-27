@@ -12,24 +12,16 @@ export default Ember.Component.extend({
     return this.get('sessionUser.current')
   }.property('sessionUser.current'),
 
-  dollars: null,
-  cents: null,
+  amount: null,
   memo: '',
 
-  setup: function() {
-    let self = this
-    this.$('.input-dollar').focus()
-  }.on('didInsertElement'),
-
   preview: function() {
-    let cents = this.get('cents') || 0
-    let dollars = this.get('dollars') || 0
-    let amount = (parseInt(dollars * 100) + parseInt(cents))/100
+    let amount = this.get('amount') / 100 || 0;
     let memo = this.get('memo')
     let senderName = this.get('sender.name') || ''
 
-    return `${senderName} paid $${amount.toFixed(2)} for ${memo}`
-  }.property('cents', 'dollars', 'sender', 'memo'),
+    return `${senderName} paid $${Number(amount.toFixed(2)).toLocaleString()} for ${memo}`
+  }.property('amount', 'sender', 'memo'),
 
   isPayback: function() {
     return this.get('type') === 'Payback'
@@ -37,10 +29,8 @@ export default Ember.Component.extend({
 
   actions: {
     transactionCreate: function() {
-      let cents = this.get('cents') || 0
-      let dollars = this.get('dollars') || 0
       let sender = this.get('sender')
-      let amount = parseInt(dollars * 100) + parseInt(cents)
+      let amount = this.get('amount') || 0
       let usersInvolved = this.get('usersInvolved')
       let recipient
 
@@ -58,12 +48,16 @@ export default Ember.Component.extend({
         recipient = usersInvolved[0]
       }
 
+      if (!sender || !recipient) {
+        return
+      }
+
       let transaction = this.get('store').createRecord('transaction', {
         type: this.get('type'),
         amount: amount,
         status: "Confirmed", // TODO: Default it to pending, and have functionality to confirm / reject transaction
         memo: this.get('memo').trim(),
-        sender: this.get('sender'),
+        sender: sender,
         recipient: recipient,
         relatedObjectType: this.get('relatedObjectType'),
         relatedObjectId: this.get('relatedObjectId')

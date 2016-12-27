@@ -1,18 +1,7 @@
 {{tbbr-input
   type="number"
-  class="input-dollar"
-  value=dollars
-  placeholder="00"
-  onInput="checkDollars"
-  onKeyDown="keyDownDollarInput"
-}}
-<span>.</span>
-{{tbbr-input
-  type="number"
-  class="input-cent"
-  value=cents
-  placeholder="00"
-  onInput="checkCents"
-  onKeyDown="keyDownCentInput"
-  onFocusOut="focusOutCentInput"
+  class="input-amount"
+  value=amountFloat
+  placeholder="1.00"
+  onFocusOut="checkAmount"
 }}

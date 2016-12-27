@@ -70,10 +70,6 @@ export default Ember.Component.extend({
       this.set('isCreatingTransaction', true)
       this.set('blurred', true)
     },
-    settleTransaction: function() {
-      this.set('isSettlingTransaction', true)
-      this.set('blurred', true)
-    },
     closeTransactionCreateAction: function() {
       this.set('isCreatingTransaction', false)
       this.set('isSettlingTransaction', false)

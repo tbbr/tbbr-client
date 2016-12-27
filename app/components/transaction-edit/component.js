@@ -1,26 +1,15 @@
 import Ember from 'ember'
 
-// const { service } = Ember.inject
-
 export default Ember.Component.extend({
   classNames: ['fade-in', 'animation-duration-300s'],
 
   setup: function() {
-    this.$('.input-dollar').focus()
+    this.$('.input-amount').focus()
   }.on('didInsertElement'),
 
   sender: function() {
     return this.get('transaction.sender')
   }.property('transaction.sender'),
-
-  dollars: function() {
-    return parseInt(this.get('transaction.amount')/100)
-  }.property('transaction.amount'),
-
-  cents: function() {
-    let cents = this.get('transaction.amount') % 100
-    return cents.toString().length < 2 ? "0" + cents.toString() : cents.toString()
-  }.property('transaction.amount'),
 
   isPayback: function() {
     return this.get('transaction.type') === 'Payback'
@@ -32,9 +21,7 @@ export default Ember.Component.extend({
 
   actions: {
     transactionSave: function() {
-      let cents = this.get('cents') || 0
-      let dollars = this.get('dollars') || 0
-      let amount = parseInt(dollars * 100) + parseInt(cents)
+      let amount = parseInt(this.get('transaction.amount'))
       let sender = this.get('sender')
       let usersInvolved = this.get('usersInvolved')
       let recipient
@@ -51,6 +38,10 @@ export default Ember.Component.extend({
         recipient = usersInvolved[1]
       } else {
         recipient = usersInvolved[0]
+      }
+
+      if (!sendor || !recipient) {
+        return
       }
 
       let transaction = this.get('transaction')
