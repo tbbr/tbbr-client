@@ -12,12 +12,6 @@ export default Ember.Component.extend({
     return this.get('sessionUser.current')
   }.property('sessionUser.current'),
 
-  // didInsertElement() {
-  //   if (this.get('isPayback')) {
-  //     this.set('amount', this.get)
-  //   }
-  // }
-
   amount: null,
   memo: '',
 
@@ -27,7 +21,7 @@ export default Ember.Component.extend({
     let memo = this.get('memo')
     let senderName = this.get('sender.name') || ''
 
-    return `${senderName} paid $${amount.toFixed(2)} for ${memo}`
+    return `${senderName} paid $${Number(amount.toFixed(2)).toLocaleString()} for ${memo}`
   }.property('amount', 'sender', 'memo'),
 
   isPayback: function() {
@@ -55,12 +49,16 @@ export default Ember.Component.extend({
         recipient = usersInvolved[0]
       }
 
+      if (!sender || !recipient) {
+        return
+      }
+
       let transaction = this.get('store').createRecord('transaction', {
         type: this.get('type'),
         amount: amount,
         status: "Confirmed", // TODO: Default it to pending, and have functionality to confirm / reject transaction
         memo: this.get('memo').trim(),
-        sender: this.get('sender'),
+        sender: sender,
         recipient: recipient,
         relatedObjectType: this.get('relatedObjectType'),
         relatedObjectId: this.get('relatedObjectId')
