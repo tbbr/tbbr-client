@@ -1,6 +1,6 @@
 {
   "name": "tbbr-client",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Just put it on my tab",
   "private": true,
   "directories": {
@@ -14,7 +14,7 @@
   },
   "repository": "",
   "engines": {
-     "node": ">= 0.12.0"
+    "node": ">= 0.12.0"
   },
   "author": "",
   "license": "MIT",
@@ -35,12 +35,11 @@
     "ember-cli-moment-shim": "0.6.2",
     "ember-cli-qunit": "^3.0.1",
     "ember-cli-release": "^0.2.9",
-    "ember-cli-sass": "^4.2.0",
+    "ember-cli-sass": "6.0.0",
     "ember-cli-selectize": "0.4.4",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-test-loader": "^1.1.0",
     "ember-cli-uglify": "^1.2.0",
-    "ember-component-css": "0.1.6",
     "ember-data": "^2.10.0",
     "ember-data-filter": "1.13.0",
     "ember-deploy-s3": "0.0.5",
@@ -48,13 +47,16 @@
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
-    "loader.js": "^4.0.10",
-    "ember-resolver": "^2.0.3",
     "ember-moment": "4.1.0",
     "ember-normalize": "0.0.9",
+    "ember-resolver": "^2.0.3",
     "ember-simple-auth": "^1.0.1",
     "eslint-config-ember": "0.0.5",
     "js-string-escape": "^1.0.0",
+    "loader.js": "^4.0.10",
     "torii": "0.8.0"
+  },
+  "dependencies": {
+    "ember-component-css": "0.2.8"
   }
 }
