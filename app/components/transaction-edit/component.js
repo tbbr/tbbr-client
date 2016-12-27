@@ -40,7 +40,7 @@ export default Ember.Component.extend({
         recipient = usersInvolved[0]
       }
 
-      if (!sendor || !recipient) {
+      if (!sender || !recipient) {
         return
       }
 

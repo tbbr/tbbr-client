@@ -14,6 +14,7 @@ let Transaction = DS.Model.extend({
   createdAt: DS.attr('Date', {
     defaultValue: function() { return new Date() }
   }),
+  updatedAt: DS.attr('Date')
 })
 
 Transaction.reopen({
