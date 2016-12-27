@@ -12,7 +12,10 @@
       <li><i class="fa fa-pencil" {{action "editTransaction"}}></i></li>
       <li><i class="fa fa-trash-o" {{action "deleteTransaction"}}></i></li>
     {{/if}}
-    <li class="text-uppercase">{{moment-from-now transaction.createdAt interval=1000}}</li>
+    <li class="transaction-date text-uppercase">
+      <span class="date-relative">{{moment-from-now transaction.createdAt interval=1000}}</span>
+      <span class="date-specific">{{moment-format transaction.createdAt 'MMM Do, YYYY'}}</span>
+    </li>
   </div>
 </div>
 

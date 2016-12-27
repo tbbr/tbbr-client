@@ -48,4 +48,22 @@
       }
     }
   }
+
+
+  .transaction-date > span {
+    display: none;
+  }
+
+  .transaction-date > .date-relative {
+    display: block;
+  }
+  
+  &:hover {
+    .date-relative {
+      display: none;
+    }
+    .date-specific {
+      display: block;
+    }
+  }
 }
