@@ -1,3 +1,4 @@
+/*jshint node:true*/
 /* global require, module */
 var path = require('path')
 var env = process.env.EMBER_ENV
@@ -53,13 +54,13 @@ module.exports = function(defaults) {
     }
   })
 
-  app.import({
-    development : 'bower_components/ember-data/ember-data.js',
-    staging     : 'bower_components/ember-data/ember-data.prod.js',
-    production  : 'bower_components/ember-data/ember-data.prod.js'
-  }, {
-    exports: { 'ember-data': [ 'default' ] }
-  })
+  // app.import({
+  //   development : 'node_modules/ember-data/ember-data.js',
+  //   staging     : 'node_modules/ember-data/ember-data.prod.js',
+  //   production  : 'node_modules/ember-data/ember-data.prod.js'
+  // }, {
+  //   exports: { 'ember-data': [ 'default' ] }
+  // })
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
@@ -75,8 +76,6 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('bower_components/hashids/lib/hashids.js')
-  app.import('bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.js')
-  app.import('bower_components/perfect-scrollbar/css/perfect-scrollbar.css')
 
   return app.toTree()
 }

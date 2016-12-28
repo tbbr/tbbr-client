@@ -29,7 +29,7 @@ export default Ember.Component.extend({
       var filterText = this.get('filterText').toLowerCase()
       return friendName.indexOf(filterText) > -1
     })
-  }.property('friendships.@each.friend.name', 'filterText'),
+  }.property('friendships.@each.friend', 'filterText'),
 
   isCreatingGroup: false,
   actions: {
