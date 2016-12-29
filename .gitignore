@@ -9,7 +9,6 @@
 /bower_components
 
 # misc
-/config/deploy.js
 /.sass-cache
 /connect.lock
 /coverage/*
