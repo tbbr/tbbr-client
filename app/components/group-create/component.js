@@ -23,8 +23,9 @@ export default Ember.Component.extend({
         description: this.get('description')
       })
 
-      group.save().then(() => {
+      group.save().then((g) => {
         this.sendAction('cancelCreateAction')
+        this.get('router').transitionTo('group', g.get("hashId"))
       })
     }
   }
