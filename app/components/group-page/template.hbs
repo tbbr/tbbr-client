@@ -1,10 +1,8 @@
 {{#if currentUserInGroup}}
   <div class="top-bar">
-    <div class="img--circle avatar" style="background-image: url('{{friendship.friend.avatarUrl}}')"></div>
     <div class="content">
       <div class="primary">
-        <span class="name">{{friendship.friend.name}}</span>
-        <span class="user-balance {{balanceStatus}}">{{displayBalance}}</span>
+        <span class="name">{{group.name}}</span>
       </div>
       <button class="btn btn--primary add-transaction" {{action "addTransaction"}}>Add</button>
     </div>
@@ -17,11 +15,6 @@
     {{/if}}
   </div>
   <div class="content-container">
-    <ul>
-      {{#each users as |user|}}
-        <li>{{user-card user=user group=group}}</li>
-      {{/each}}
-    </ul>
 
     {{#if isGroupEmpty}}
       <div class="invite-user">

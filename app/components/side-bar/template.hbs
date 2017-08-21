@@ -1,14 +1,28 @@
 <div class="bar-content">
   <div class="side-header-input">
-    {{input type="text" placeholder="Search Friends..." value=(mut filterText)}}
+    {{input type="text" placeholder="Search..." value=(mut filterText)}}
   </div>
+  <div class="side-tabs">
+    <div class={{if isFriendshipTabOpen "side-tabs-item side-tabs-item-active" "side-tabs-item"}} {{action "clickTab" "friendship"}}>Friendships</div>
+    <div class={{if isGroupTabOpen "side-tabs-item side-tabs-item-active" "side-tabs-item"}} {{action "clickTab" "group"}}>Groups</div>
+  </div>
+  {{#if isFriendshipTabOpen}}
   <ul>
     {{#each filteredFriendships as |friendship|}}
       <li>{{friendship-card friendship=friendship}}</li>
     {{else}}
-      <h4 class="status-text text-uppercase">No Friends Found</h4>
+      <h4 class="status-text text-uppercase">No friends found :(</h4>
     {{/each}}
   </ul>
+  {{else}}
+    <ul>
+      {{#each filteredGroups as |group|}}
+        <li>{{group-card group=group}}</li>
+      {{else}}
+        <h4 class="status-text text-uppercase">No Groups found :(</h4>
+      {{/each}}
+    </ul>
+  {{/if}}
 </div>
 
 <div class="fixed-bottom">

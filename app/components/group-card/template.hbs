@@ -9,8 +9,8 @@
   </div>
 
   <div class="user-list">
-    {{#each group.users as |user|}}
-      <li><div class="img--circle user-avatar" style="background-image: url('{{user.avatarUrl}}')"></div></li>
+    {{#each group.groupMembers as |member|}}
+      <li><div class="img--circle user-avatar" style="background-image: url('{{member.user.avatarUrl}}')"></div></li>
     {{/each}}
   </div>
 </div>

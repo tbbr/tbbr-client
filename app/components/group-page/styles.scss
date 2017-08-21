@@ -106,7 +106,9 @@ $topBarHeight: 70px;
     .invite-text {
       color: $grey600;
       text-align: center;
-      font-size: 13px;
+      font-size: $baseFontSize - 1px;
+      font-weight: 100;
+      letter-spacing: 1px;
       text-transform: uppercase;
       margin-bottom: 10px;
     }

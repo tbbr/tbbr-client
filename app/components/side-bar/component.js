@@ -21,7 +21,7 @@ export default Ember.Component.extend({
     })
   },
 
-  filterText: "",
+  filterText: '',
 
   filteredFriendships: function() {
     return this.get('friendships').filter((item) => {
@@ -31,13 +31,35 @@ export default Ember.Component.extend({
     })
   }.property('friendships.@each.friend', 'filterText'),
 
+  filteredGroups: function() {
+    return this.get('groups').filter((item) => {
+      var groupName = item.get('name').toLowerCase()
+      var filterText = this.get('filterText').toLowerCase()
+      return groupName.indexOf(filterText) > -1
+    })
+  }.property('groups.@each.name', 'filterText'),
+
   isCreatingGroup: false,
+
+  isFriendshipTabOpen: true,
+  isGroupTabOpen: false,
+
   actions: {
     toggleCreatingGroup: function() {
       this.toggleProperty('isCreatingGroup')
     },
     toggleSidebar: function() {
       this.toggleProperty('isClosed')
+    },
+
+    clickTab: function(tabName) {
+      if (tabName === "friendship") {
+        this.set("isFriendshipTabOpen", true)
+        this.set("isGroupTabOpen", false)
+      } else if (tabName === "group") {
+        this.set("isGroupTabOpen", true)
+        this.set("isFriendshipTabOpen", false)
+      }
     }
   }
 })
