@@ -14,7 +14,7 @@ $headerHeight: 50px;
     margin: 0 auto;
     padding: 0 10px;
   }
-  .logo {
+  .logo > a{
     float: left;
     text-align: left;
     line-height: $headerHeight;

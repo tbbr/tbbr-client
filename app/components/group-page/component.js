@@ -18,7 +18,7 @@ export default Ember.Component.extend({
   }.on('init'),
 
   inviteUrl: function() {
-    return `${config.appHost}/dashboard/groups/${this.get('group.hashId')}`
+    return `${config.appHost}/groups/${this.get('group.hashId')}`
   }.property('group'),
 
   currentUserInGroup: function() {

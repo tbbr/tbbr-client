@@ -41,8 +41,19 @@ export default Ember.Component.extend({
 
   isCreatingGroup: false,
 
-  isFriendshipTabOpen: true,
-  isGroupTabOpen: false,
+  isFriendshipTabOpen: function() {
+    if (this.get('router').currentRouteName !== "group") {
+      return true
+    }
+    return false
+  }.property(),
+
+  isGroupTabOpen: function() {
+    if (this.get('router').currentRouteName === "group") {
+      return true
+    }
+    return false
+  }.property(),
 
   actions: {
     toggleCreatingGroup: function() {
