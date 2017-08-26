@@ -57,10 +57,11 @@ function gtGenerateSplitAmounts(amount, splitParts) {
 
 export default Ember.Component.extend({
   sessionUser: service('session-user'),
+	flashMessages: service(),
   store: service(),
 
   classNames: ['fade-in', 'animation-duration-300s'],
-	splitType: 'Shares',
+	splitType: 'Share',
 
   setup: function() {
     let shareSplitsPerMember = {}
@@ -77,7 +78,7 @@ export default Ember.Component.extend({
 		this.set('disabledMembers', {})
     this.set('amount', null)
     this.set('memo', '')
-		// this.set('splitType', 'Shares')
+		// this.set('splitType', 'Share')
   }.on('init'),
 
   sender: function() {
@@ -94,7 +95,7 @@ export default Ember.Component.extend({
 
   actions: {
     updateShareSplitsPerMember: function(memberId, newVal) {
-			if (this.get('splitType') === 'Shares' && !this.get('disabledMembers')[memberId]) {
+			if (this.get('splitType') === 'Share' && !this.get('disabledMembers')[memberId]) {
 	      let splits = this.get('shareSplitsPerMember')
 	      splits[memberId] = newVal
 	      // this should force observers to fire
@@ -104,7 +105,7 @@ export default Ember.Component.extend({
 
 		updateAmountPerMember: function(memberId, amount) {
 			if (this.get('splitType') === 'Normal' && !this.get('disabledMembers')[memberId]) {
-				amountSplitsPerMember[memberId] = amount
+				this.get('amountSplitsPerMember')[memberId] = amount
 			}
 		},
 
@@ -129,53 +130,70 @@ export default Ember.Component.extend({
 
 		updateSplitType: function() {
 			if (this.get('splitType') === 'Normal') {
-				this.set('splitType', 'Shares')
+				this.set('splitType', 'Share')
 			} else {
 				this.set('splitType', 'Normal')
 			}
 		},
 
     transactionCreate: function() {
-      let sender = this.get('sender')
+			const flashMessages = this.get('flashMessages')
+      let sender = this.get('sender').content
       let amount = this.get('amount') || 0
-      let usersInvolved = this.get('usersInvolved')
-      let recipient
-
+			let ogRecipientSplits
+			if (this.get('splitType') === 'Normal') {
+				const amountSplitsPerMember = this.get('amountSplitsPerMember')
+				let sum = 0
+				for (let key in amountSplitsPerMember) {
+					sum += amountSplitsPerMember[key]
+				}
+				if (sum !== amount) {
+					flashMessages.warning('Things don\'t add up, double check your recipient splits')
+					return
+				}
+				ogRecipientSplits = amountSplitsPerMember
+			} else {
+				ogRecipientSplits = this.get('shareSplitsPerMember')
+			}
+			let recipients = []
+			let recipientSplits = []
+      this.get('group.groupMembers').forEach((m) => {
+				if (!this.get('disabledMembers')[m.get('id')]) {
+					recipients.push(m.get('user').content)
+					recipientSplits.push(ogRecipientSplits[m.get('id')])
+				}
+			})
+			
       if (!amount || amount === 0) {
+				flashMessages.warning('Amount cannot be zero or empty!')
         return
       }
 
       if (!sender) {
+				flashMessages.warning('Someone must have paid! (Please include a sender!)')
         return
       }
 
-      if (sender.get('id') === usersInvolved[0].get('id')) {
-        recipient = usersInvolved[1]
-      } else {
-        recipient = usersInvolved[0]
-      }
+			if (recipients.length === 0) {
+				flashMessages.warning('You must have at least one recipient!')
+				return
+			}
 
-      if (!sender || !recipient) {
-        return
-      }
-
-      let transaction = this.get('store').createRecord('transaction', {
-        type: this.get('type'),
+      let groupTransaction = this.get('store').createRecord('groupTransaction', {
         amount: amount,
-        status: "Confirmed", // TODO: Default it to pending, and have functionality to confirm / reject transaction
         memo: this.get('memo').trim(),
-        sender: sender,
-        recipient: recipient,
-        relatedObjectType: this.get('relatedObjectType'),
-        relatedObjectId: this.get('relatedObjectId')
+        senders: [sender],
+        recipients: recipients,
+				senderSplits: [1],
+				recipientSplits: recipientSplits,
+				recipientSplitType: this.get('splitType'),
+				senderSplitType: 'Share',
+				group: this.get('group')
       })
 
-      transaction.save().then(t => {
+      groupTransaction.save().then(gt => {
         this.sendAction('closeAction')
       })
-    },
-    changeType: function(type) {
-      this.set('type', type)
     },
     close: function() {
       this.sendAction('closeAction')

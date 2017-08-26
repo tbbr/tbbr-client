@@ -20,8 +20,8 @@ export default Ember.Component.extend({
     return `${sign}${dollars}.${cents}`;
   }.property('shareSplitAmounts'),
 
-  isSplitTypeShares: function() {
-    return this.get('splitType') === 'Shares'
+  isSplitTypeShare: function() {
+    return this.get('splitType') === 'Share'
   }.property('splitType'),
 
   isSplitTypeNormal: function() {
@@ -30,7 +30,7 @@ export default Ember.Component.extend({
 
   memberSharesUpdate: function() {
     if (this.get('isSplitTypeNormal')) {
-      this.sendAction('updateAmountPerMember', this.get('member').get('id'), this.get('calculatedAmount'))
+      this.sendAction('updateAmountPerMember', this.get('member').get('id'), this.get('normalAmount'))
     }
   }.observes('normalAmount'),
 
