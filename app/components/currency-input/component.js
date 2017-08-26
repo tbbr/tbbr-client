@@ -3,19 +3,16 @@ import Ember from 'ember'
 export default Ember.Component.extend({
   classNameBindings:['isInvalid:invalid'],
   amount: null,
-  amountFloat: null,
   isInvalid: false,
 
-  willInsertElement() {
+  amountFloat: function() {
     let amount = this.get('amount')
     if (amount) {
-      this.set('amountFloat', (amount/100).toFixed(2))
+      console.log("Amount's changing:  ", amount)
+      return (amount/100).toFixed(2)
     }
-  },
-
-  didInsertElement() {
-    this.$('.input-amount').focus()
-  },
+    return null
+  }.property('amount'),
 
   actions: {
     checkAmount: function(event) {

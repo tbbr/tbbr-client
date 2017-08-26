@@ -1,0 +1,39 @@
+{{#unless isPayback}}
+  <div class="transaction-paid">
+    {{ember-selectize
+      content=group.groupMembers
+      optionValuePath="content.user.id"
+      optionLabelPath="content.user.name"
+      selection=sender
+      placeholder="Who paid?"
+    }}
+  </div>
+{{/unless}}
+
+<div class="transaction-content">
+  {{#unless isPayback}}
+    {{currency-input
+      amount=amount
+    }}
+  {{/unless}}
+  {{textarea type="text" value=memo maxlength="140" placeholder="Memo..." rows="1"}}
+  <button class="btn" {{action "transactionCreate"}}>Create</button>
+  <i class="fa fa-times close" {{action "close"}}></i>
+</div>
+
+Type: <button type="button" class="btn" {{action "updateSplitType"}}>{{splitType}}</button>
+<div class="group-transaction-members">
+  <ul>
+    {{#each group.groupMembers as |member|}}
+      {{group-transaction-create-member
+        member=member
+        splitType=splitType
+        shareSplitAmounts=shareSplitAmounts
+        normalSplitAmounts=normalSplitAmounts
+        updateShareSplitsPerMember="updateShareSplitsPerMember"
+        updateAmountPerMember="updateAmountPerMember"
+        toggleMemberDisabled="toggleMemberDisabled"
+      }}
+    {{/each}}
+  </ul>
+</div>

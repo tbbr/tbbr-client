@@ -7,9 +7,8 @@
       <button class="btn btn--primary add-transaction" {{action "addTransaction"}}>Add</button>
     </div>
     {{#if isCreatingTransaction}}
-      {{transaction-create
-        relatedObjectId=group.id
-        relatedObjectType="Group"
+      {{group-transaction-create
+        group=group
         closeAction="closeTransactionCreateAction"
       }}
     {{/if}}

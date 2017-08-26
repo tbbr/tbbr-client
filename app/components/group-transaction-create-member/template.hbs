@@ -1,0 +1,16 @@
+<div {{action "toggleMemberDisable"}}>{{member.user.name}}</div>
+
+{{#if isSplitTypeShares}}
+  {{tbbr-input
+    type="number"
+    class="input-amount"
+    value=memberShares
+    placeholder="1"
+    min="1"
+    max="20"
+    onInput="memberSharesUpdate"
+  }}
+  {{calculatedAmount}}
+{{else}}
+  {{currency-input amount=normalAmount}}
+{{/if}}
