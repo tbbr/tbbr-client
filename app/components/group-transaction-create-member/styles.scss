@@ -1,0 +1,36 @@
+& {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px -10px;
+  padding: 5px 15px;
+  border-bottom: 1px solid $grey800;
+
+  &.create-member-disabled {
+    opacity: 0.5;
+  }
+
+  .create-member-name {
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .create-member-right {
+    display: flex;
+  }
+
+  .create-member-input {
+    min-width: 100px;
+
+     > input {
+      font-size: $baseFontSize - 2px;
+      &:before {
+        font-size: $baseFontSize - 2px;
+      }
+    }
+  }
+
+  .create-member-calculated-amount {
+    margin-left: 10px;
+    min-width: 100px;
+  }
+}

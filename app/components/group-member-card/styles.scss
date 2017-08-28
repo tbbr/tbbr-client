@@ -1,0 +1,46 @@
+$cardHeight: 60px;
+
+& {
+  display: flex;
+  position: relative;
+  height: $cardHeight;
+  border-bottom: 1px solid $secondaryDark;
+
+  .group-img {
+    width: $imgMd;
+    height: $imgMd;
+    background-size: cover;
+    background-position: center center;
+    margin: 10px;
+    background-color: $primaryBase;
+  }
+  .content {
+    margin: 10px 0;
+    text-align: left;
+    .name {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      height: 20px;
+      line-height: 20px;
+
+      a {
+        color: $grey400;
+      }
+
+      a.active {
+        color: $primaryBase;
+      }
+    }
+    .user-balance {
+      color: $secondaryLighter;
+
+      &.positive {
+        color: $primaryDark;
+      }
+      &.negative {
+        color: $redShade;
+      }
+    }
+  }
+}

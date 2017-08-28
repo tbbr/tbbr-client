@@ -28,9 +28,17 @@
     }
   }
 
+  .transaction-input-item {
+    margin-bottom: 5px;
+  }
+
   .transaction-paid {
-    max-width: 200px;
-    margin: 0 auto;
+    display: flex;
+
+    .transaction-paid-select {
+      min-width: 200px;
+      width: 250px;
+    }
   }
 
   .transaction-type {

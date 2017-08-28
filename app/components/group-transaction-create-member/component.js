@@ -2,6 +2,7 @@ import Ember from 'ember'
 
 export default Ember.Component.extend({
   tagName: 'li',
+  classNameBindings: ['isMemberDisabled:create-member-disabled'],
 
   normalAmount: '',
   isMemberDisabled: false,
@@ -12,6 +13,9 @@ export default Ember.Component.extend({
 
   calculatedAmount: function() {
     let value = this.get('shareSplitAmounts')[this.get('member').get('id')]
+    if (!value) {
+      return '$0.00'
+    }
     let dollars = Math.floor(value / 100);
     let cents = value % 100;
     let sign = '$';

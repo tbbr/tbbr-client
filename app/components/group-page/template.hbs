@@ -10,10 +10,15 @@
       {{group-transaction-create
         group=group
         closeAction="closeTransactionCreateAction"
+        successfullyCreated="groupTransactionCreated"
       }}
     {{/if}}
   </div>
   <div class="content-container">
+
+    {{#each group.groupMembers as |member|}}
+      {{group-member-card member=member transactions=transactionsForCurrentUser}}
+    {{/each}}
 
     {{#if isGroupEmpty}}
       <div class="invite-user">
@@ -23,10 +28,9 @@
       </div>
     {{/if}}
 
-    {{transaction-list
-      transactions=sortedGroupTransactions
-      transactionUpdated="transactionUpdated"
-    }}
+    {{#each groupTransactions as |gt|}}
+      {{group-transaction-card groupTransaction=gt}}
+    {{/each}}
   </div>
 {{else}}
   <div class="content-container center-align">

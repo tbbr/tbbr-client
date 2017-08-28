@@ -1,27 +1,27 @@
-{{#unless isPayback}}
-  <div class="transaction-paid">
-    {{ember-selectize
-      content=group.groupMembers
-      optionValuePath="content.user.id"
-      optionLabelPath="content.user.name"
-      selection=sender
-      placeholder="Who paid?"
-    }}
-  </div>
-{{/unless}}
+<i class="fa fa-times close" {{action "close"}}></i>
 
-<div class="transaction-content">
-  {{#unless isPayback}}
-    {{currency-input
-      amount=amount
-    }}
-  {{/unless}}
-  {{textarea type="text" value=memo maxlength="140" placeholder="Memo..." rows="1"}}
-  <button class="btn" {{action "transactionCreate"}}>Create</button>
-  <i class="fa fa-times close" {{action "close"}}></i>
+<div class="transaction-input-item transaction-paid">
+  <span class="label">Who Paid:</span>
+  <div class="transaction-paid-select">
+  {{ember-selectize
+    content=groupMemberUsersSelectize
+    optionValuePath="content.id"
+    optionLabelPath="content.name"
+    selection=sender
+    placeholder="Who paid?"
+  }}
+  </div>
+</div>
+<div class="transaction-input-item transaction-amount">
+  <span class="label">Amount:</span>
+  {{currency-input
+    amount=amount
+  }}
+</div>
+<div class="transaction-input-item transaction-split-type">
+  <span class="label">Type:</span><button type="button" class="btn btn--small" {{action "updateSplitType"}}>{{splitType}}</button>
 </div>
 
-Type: <button type="button" class="btn" {{action "updateSplitType"}}>{{splitType}}</button>
 <div class="group-transaction-members">
   <ul>
     {{#each group.groupMembers as |member|}}
@@ -37,3 +37,7 @@ Type: <button type="button" class="btn" {{action "updateSplitType"}}>{{splitType
     {{/each}}
   </ul>
 </div>
+
+{{textarea type="text" value=memo maxlength="140" placeholder="Memo..." rows="2"}}
+
+<button class="btn btn--primary" {{action "transactionCreate"}}>Create</button>

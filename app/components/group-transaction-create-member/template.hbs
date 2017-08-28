@@ -1,16 +1,22 @@
-<div {{action "toggleMemberDisable"}}>{{member.user.name}}</div>
+<div class="create-member-name" {{action "toggleMemberDisable"}}><h3>{{member.user.name}}</h3></div>
 
-{{#if isSplitTypeShare}}
-  {{tbbr-input
-    type="number"
-    class="input-amount"
-    value=memberShares
-    placeholder="1"
-    min="1"
-    max="20"
-    onInput="memberSharesUpdate"
-  }}
-  {{calculatedAmount}}
-{{else}}
-  {{currency-input amount=normalAmount}}
-{{/if}}
+<div class="create-member-right">
+  {{#if isSplitTypeShare}}
+    <div class="create-member-input">
+      {{tbbr-input
+        type="number"
+        class="input-amount"
+        value=memberShares
+        placeholder="1"
+        min="1"
+        max="20"
+        onInput="memberSharesUpdate"
+      }}
+    </div>
+    <h3 class="create-member-calculated-amount">{{calculatedAmount}}</h3>
+  {{else}}
+    <div class="create-member-input">
+      {{currency-input amount=normalAmount isSmall=true}}
+    </div>
+  {{/if}}
+</div>

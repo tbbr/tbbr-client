@@ -1,0 +1,16 @@
+<div class="img--circle group-img" style="background-image: url('{{member.user.avatarUrl}}')"></div>
+<div class="content">
+  <div class="name">
+    {{member.user.name}}
+  </div>
+  <div class="user-balance">
+    <span class="label">Paid:</span>{{format-currency member.amountSent}}, <span class="label">Spent:</span>{{format-currency member.amountReceived}}
+  </div>
+  <div class="transaction-amount">
+    {{#if isCurrentUser}}
+      <span class="label">{{curAmountText}}:</span>{{format-currency memberTotalAmount}}
+    {{else}}
+      <span class="label">{{amountText}}:</span>{{format-currency myTransactionAmount}}
+    {{/if}}
+  </div>
+</div>

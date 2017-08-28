@@ -32,6 +32,15 @@
     }
   }
 
+  &.currency-input-small {
+    font-size: $baseFontSize + 2px;
+    min-width: 85px;
+  }
+  &.currency-input-small > input {
+    font-size: $baseFontSize + 2px;
+    width: 85px;
+  }
+
   &.invalid {
     input {
       border-color: $redShade;

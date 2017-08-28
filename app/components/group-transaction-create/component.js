@@ -78,12 +78,17 @@ export default Ember.Component.extend({
 		this.set('disabledMembers', {})
     this.set('amount', null)
     this.set('memo', '')
-		// this.set('splitType', 'Share')
   }.on('init'),
 
   sender: function() {
     return this.get('sessionUser.current')
   }.property('sessionUser.current'),
+
+	groupMemberUsersSelectize: function() {
+		return this.get('group').get('groupMembers').map((m) => {
+			return m.get('user')
+		})
+	}.property('group.groupMembers'),
 
   shareSplitAmounts: function() {
     return gtGenerateSplitAmounts(this.get('amount'), Object.assign({}, this.get('shareSplitsPerMember')))
@@ -142,28 +147,26 @@ export default Ember.Component.extend({
       let amount = this.get('amount') || 0
 			let ogRecipientSplits
 			if (this.get('splitType') === 'Normal') {
-				const amountSplitsPerMember = this.get('amountSplitsPerMember')
-				let sum = 0
-				for (let key in amountSplitsPerMember) {
-					sum += amountSplitsPerMember[key]
-				}
-				if (sum !== amount) {
-					flashMessages.warning('Things don\'t add up, double check your recipient splits')
-					return
-				}
-				ogRecipientSplits = amountSplitsPerMember
+				ogRecipientSplits = this.get('amountSplitsPerMember')
 			} else {
-				ogRecipientSplits = this.get('shareSplitsPerMember')
+				ogRecipientSplits = gtGenerateSplitAmounts(this.get('amount'), Object.assign({}, this.get('shareSplitsPerMember')))
 			}
 			let recipients = []
 			let recipientSplits = []
+			let sum = 0
       this.get('group.groupMembers').forEach((m) => {
 				if (!this.get('disabledMembers')[m.get('id')]) {
 					recipients.push(m.get('user').content)
 					recipientSplits.push(ogRecipientSplits[m.get('id')])
+					sum += ogRecipientSplits[m.get('id')]
 				}
 			})
-			
+
+			if (sum !== amount) {
+				flashMessages.warning('Things don\'t add up, double check your recipient splits')
+				return
+			}
+
       if (!amount || amount === 0) {
 				flashMessages.warning('Amount cannot be zero or empty!')
         return
@@ -184,15 +187,16 @@ export default Ember.Component.extend({
         memo: this.get('memo').trim(),
         senders: [sender],
         recipients: recipients,
-				senderSplits: [1],
+				senderSplits: [amount],
 				recipientSplits: recipientSplits,
-				recipientSplitType: this.get('splitType'),
-				senderSplitType: 'Share',
+				recipientSplitType: 'Normal',
+				senderSplitType: 'Normal',
 				group: this.get('group')
       })
 
       groupTransaction.save().then(gt => {
         this.sendAction('closeAction')
+				this.sendAction('successfullyCreated')
       })
     },
     close: function() {

@@ -3,11 +3,67 @@ import config from '../../config/environment'
 
 const { service } = Ember.inject
 
+function determineMinimizedTransactions(curUserId, groupMembers) {
+  let transactions = []
+  let simpleMembers = []
+  groupMembers = groupMembers.toArray()
+  groupMembers.forEach((m) => {
+    simpleMembers.push({
+      id: m.get('id'),
+      val: m.get('amountSent') - m.get('amountReceived'),
+      user: m.get('user')
+    })
+  })
+  simpleMembers.sort((a,b) => {
+    return b.val - a.val
+  })
+
+  let left = 0
+  let right = simpleMembers.length - 1
+
+  while (left < right) {
+    let leftMember = simpleMembers[left]
+    let rightMember = simpleMembers[right]
+    let transactionAmount
+    const result = leftMember.val + rightMember.val
+    if (result < 0) {
+      transactionAmount = leftMember.val
+      leftMember.val = 0
+      rightMember.val = result
+      left++
+    } else if (result > 0) {
+      transactionAmount = Math.abs(rightMember.val)
+      leftMember.val = result
+      rightMember.val = 0
+      right--
+    } else {
+      transactionAmount = leftMember.val
+      leftMember.val = 0
+      rightMember.val = 0
+      left++
+      right--
+    }
+    // if curUserId is involved in the transaction then add the transaction
+    if ((leftMember.user.get('id') === curUserId ||
+        rightMember.user.get('id') === curUserId
+      ) && transactionAmount > 0) {
+      transactions.push({
+        senderId: rightMember.user.get('id'),
+        recipientId: leftMember.user.get('id'),
+        amount: transactionAmount
+      })
+    }
+  }
+  return transactions
+}
+
 export default Ember.Component.extend({
   sessionUser: service('session-user'),
   store: service(),
 
   classNameBindings: ['isCreatingTransaction:blurred'],
+
+  transactionsForCurrentUser: [],
 
   setup: function() {
     const groupId = this.get('group').get('id')
@@ -15,6 +71,11 @@ export default Ember.Component.extend({
     this.get('store').query('groupMember', {
       groupId: groupId
     })
+    const curUserId = this.get('sessionUser.session').get('data').authenticated.user_id.toString()
+    this.set('transactionsForCurrentUser', determineMinimizedTransactions(
+      curUserId,
+      this.get('group').get('groupMembers')
+    ))
   }.on('init'),
 
   inviteUrl: function() {
@@ -36,24 +97,17 @@ export default Ember.Component.extend({
     return this.get('group.groupMembers').get('length') === 1
   }.property('group.groupMembers.[]'),
 
-  // groupTransactions: function() {
-  //   let relatedObjectId = this.get('group.id')
-  //   let transactions = this.get('store').filter('transaction', t => {
-  //     return t.get('relatedObjectId') == relatedObjectId && t.get('relatedObjectType') == 'Group'
-  //   })
-  //   return transactions
-  // }.property('group', 'triggerUserTransactions'),
-  //
-  // sortedGroupTransactions: function() {
-  //   return this.get('groupTransactions').sortBy('createdAt').reverse()
-  // }.property('groupTransactions.[]'),
-  //
-  // getGroupTransactions: function() {
-  //   this.get('store').query('transaction', {
-  //     'relatedObjectId': this.get('group.id'),
-  //     'relatedObjectType': 'Group'
-  //   })
-  // }.observes('group').on('init'),
+  groupTransactions: function() {
+    let groupId = this.get('group.id')
+    let groupTransactions = this.get('store').query('groupTransaction', {
+      groupId: groupId
+    })
+    return groupTransactions
+  }.property('group', 'triggerReloadTransactions'),
+
+  sortedGroupTransactions: function() {
+    return this.get('groupTransactions').sortBy('createdAt').reverse()
+  }.property('groupTransactions.[]'),
 
   actions: {
     joinGroup: function() {
@@ -77,7 +131,10 @@ export default Ember.Component.extend({
     },
     transactionUpdated: function() {
       // TODO: I feel horrible about this :(
-      this.incrementProperty('triggerUserTransactions')
+      this.toggleProperty('triggerReloadTransactions')
+    },
+    groupTransactionCreated: function() {
+      this.toggleProperty('triggerReloadTransactions')
     }
   }
 })

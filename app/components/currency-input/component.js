@@ -1,7 +1,7 @@
 import Ember from 'ember'
 
 export default Ember.Component.extend({
-  classNameBindings:['isInvalid:invalid'],
+  classNameBindings:['isInvalid:invalid', 'isSmall:currency-input-small'],
   amount: null,
   isInvalid: false,
 

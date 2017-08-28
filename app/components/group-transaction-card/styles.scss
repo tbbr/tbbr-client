@@ -1,0 +1,72 @@
+& {
+  position: relative;
+  padding: 10px 20px;
+  border-bottom: 1px solid $secondaryDarker;
+
+  &.blurred {
+    .transaction-card-content {
+      opacity: 0.15;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  .primary-line {
+    .name {
+      font-weight: bold;
+    }
+  }
+
+  .memo {
+    border-left: 4px solid $secondaryLight;
+    padding: 3px 5px;
+    margin: 10px;
+    color: $grey600;
+    overflow-wrap: break-word;
+
+    &:hover {
+      color: $grey500;
+    }
+    &:empty {
+      padding: 0;
+    }
+  }
+
+  .sub-line {
+    color: $grey600;
+    text-align: right;
+    margin-top: 10px;
+    li {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-right: 8px;
+      i.fa {
+        font-size: 18px;
+        cursor: pointer;
+
+        &:hover {
+          color: $grey400;
+        }
+      }
+    }
+  }
+
+
+  .transaction-date > span {
+    display: none;
+  }
+
+  .transaction-date > .date-relative {
+    display: block;
+  }
+
+  &:hover {
+    .date-relative {
+      display: none;
+    }
+    .date-specific {
+      display: block;
+    }
+  }
+}

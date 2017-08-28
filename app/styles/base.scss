@@ -41,9 +41,9 @@ body {
 input, textarea {
   width: 100%;
   font-size: 16px;
-  padding: 10px;
+  padding: 5px 10px;
   background-color: $secondaryLight;
-  border-radius: 3px;
+  border-radius: 2px;
   border: 1px solid $secondaryBase;
 }
 
@@ -74,7 +74,7 @@ textarea {
 }
 
 
-// Webkit scrollbar 
+// Webkit scrollbar
 ::-webkit-scrollbar {
     width:  7px;
 }
@@ -128,6 +128,19 @@ button {
   border-color: $primaryDark;
   background-color: $primaryDark;
   color: $primaryLighter;
+}
+
+.btn--small {
+  font-size: $baseFontSize - 2px;
+  line-height: 25px;
+  padding: 0 10px;
+}
+
+.label {
+  text-transform: uppercase;
+  font-size: $baseFontSize - 2px;
+  letter-spacing: 1px;
+  margin-right: 10px;
 }
 
 .container {
