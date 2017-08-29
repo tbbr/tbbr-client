@@ -2,6 +2,7 @@ import DS from 'ember-data'
 
 export default DS.Model.extend({
   type: DS.attr('string'),
+  memo: DS.attr('string'),
   amount: DS.attr('number'),
   senders: DS.hasMany('user'),
   recipients: DS.hasMany('user'),
