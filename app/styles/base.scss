@@ -178,3 +178,19 @@ button {
 .center-align {
   text-align: center;
 }
+
+.flash-messages-container {
+  position: absolute;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.flash-messages-item {
+  background-color: $grey800;
+  padding: 10px;
+  border-radius: 2px;
+  width: 350px;
+  margin: 10px auto;
+}
