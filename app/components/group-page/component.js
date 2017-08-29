@@ -71,16 +71,38 @@ export default Ember.Component.extend({
     this.get('store').query('groupMember', {
       groupId: groupId
     })
+  }.on('init'),
+
+  transactionsForCurrentUser: function() {
+    console.log('transactionForCurrentUser called!')
     const curUserId = this.get('sessionUser.session').get('data').authenticated.user_id.toString()
-    this.set('transactionsForCurrentUser', determineMinimizedTransactions(
+    return determineMinimizedTransactions(
       curUserId,
       this.get('group').get('groupMembers')
-    ))
-  }.on('init'),
+    )
+  }.property('sessionUser.session', 'group.groupMembers.@each.amountSent', 'group.groupMembers.@each.amountReceived', 'triggerReloadTransactions'),
 
   inviteUrl: function() {
     return `${config.appHost}/groups/${this.get('group.hashId')}`
   }.property('group'),
+
+  currentUserMember: function() {
+    let curUserId = this.get('sessionUser.session.data').authenticated.user_id.toString()
+    return this.get('group.groupMembers').filter((m) => {
+      if (m.get('user').get('id') === curUserId) {
+        return true
+      }
+    }).objectAt(0)
+  }.property('group.groupMembers.[]', 'sessionUser.session'),
+
+  groupMembersWithoutCurrentUser: function() {
+    let curUserId = this.get('sessionUser.session.data').authenticated.user_id.toString()
+    return this.get('group.groupMembers').filter((m) => {
+      if (m.get('user').get('id') !== curUserId) {
+        return true
+      }
+    })
+  }.property('group.groupMembers.[]', 'sessionUser.session'),
 
   currentUserInGroup: function() {
     let inGroup = false
@@ -91,7 +113,7 @@ export default Ember.Component.extend({
       }
     })
     return inGroup
-  }.property('group.groupMembers.[]', 'sessionUser.current'),
+  }.property('group.groupMembers.[]', 'sessionUser.session'),
 
   isGroupEmpty: function() {
     return this.get('group.groupMembers').get('length') === 1
@@ -129,12 +151,14 @@ export default Ember.Component.extend({
     closeTransactionCreateAction: function() {
       this.set('isCreatingTransaction', false)
     },
-    transactionUpdated: function() {
+    groupTransactionUpdated: function() {
       // TODO: I feel horrible about this :(
       this.toggleProperty('triggerReloadTransactions')
+      this.sendAction('reloadGroup')
     },
     groupTransactionCreated: function() {
       this.toggleProperty('triggerReloadTransactions')
+      this.sendAction('reloadGroup')
     }
   }
 })

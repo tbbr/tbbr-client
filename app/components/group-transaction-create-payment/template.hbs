@@ -1,0 +1,10 @@
+<i class="fa fa-times close" {{action "close"}}></i>
+<div class="transaction-input-item transaction-amount">
+  <span class="label">Amount:</span>
+  {{currency-input
+    amount=amount
+  }}
+</div>
+{{textarea type="text" value=memo maxlength="140" placeholder="Note..." rows="2"}}
+
+<button class="btn btn--primary" {{action "transactionCreate"}}>Create</button>

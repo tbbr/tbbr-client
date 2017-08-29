@@ -1,7 +1,6 @@
 $cardHeight: 60px;
 
 & {
-  display: flex;
   position: relative;
   height: $cardHeight;
   border-bottom: 1px solid $secondaryDark;
@@ -15,8 +14,23 @@ $cardHeight: 60px;
     background-color: $primaryBase;
   }
   .content {
-    margin: 10px 0;
+    margin: 10px;
     text-align: left;
+    display: flex;
+    justify-content: space-between;
+
+    .member-main {
+      display: flex;
+    }
+
+    .member-content {
+      margin-top: 10px;
+    }
+
+    .member-amount {
+      text-align:right;
+    }
+
     .name {
       display: block;
       text-transform: uppercase;
@@ -34,13 +48,6 @@ $cardHeight: 60px;
     }
     .user-balance {
       color: $secondaryLighter;
-
-      &.positive {
-        color: $primaryDark;
-      }
-      &.negative {
-        color: $redShade;
-      }
     }
   }
 }

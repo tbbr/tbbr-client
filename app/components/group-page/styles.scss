@@ -1,6 +1,13 @@
 $topBarHeight: 70px;
 
 & {
+  .section-header {
+    font-weight: 100;
+    letter-spacing: 1px;
+    margin-left: 10px;
+    margin-top: 5px;
+    text-transform: uppercase;
+  }
   .top-bar {
     position: absolute;
       z-index: 1000;

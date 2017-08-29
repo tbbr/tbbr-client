@@ -7,16 +7,6 @@
 
   <div class="memo">{{groupTransaction.memo}}</div>
 
-  <div class="sub-line">
-    {{#if isCreatorCurrentUser}}
-      <li><i class="fa fa-trash-o" {{action "deleteTransaction"}}></i></li>
-    {{/if}}
-    <li class="transaction-date text-uppercase">
-      <span class="date-relative">{{moment-from-now groupTransaction.createdAt interval=1000}}</span>
-      <span class="date-specific">{{moment-format groupTransaction.createdAt 'MMM Do, YYYY'}}</span>
-    </li>
-  </div>
-
   <ul class="transaction-recipients">
     {{#each groupTransaction.recipients as |recipient index|}}
       {{group-transaction-card-recipient
@@ -25,4 +15,14 @@
         groupTransaction=groupTransaction}}
     {{/each}}
   </ul>
+
+  <div class="sub-line">
+    {{#if isCreatorCurrentUser}}
+      <li><i class="fa fa-trash-o" {{action "deleteGroupTransaction"}}></i></li>
+    {{/if}}
+    <li class="transaction-date text-uppercase">
+      <span class="date-relative">{{moment-from-now groupTransaction.createdAt interval=1000}}</span>
+      <span class="date-specific">{{moment-format groupTransaction.createdAt 'MMM Do, YYYY'}}</span>
+    </li>
+  </div>
 </div>

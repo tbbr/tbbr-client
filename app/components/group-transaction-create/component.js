@@ -119,11 +119,9 @@ export default Ember.Component.extend({
 			let shareSplits = this.get('shareSplitsPerMember')
 			let amountSplits = this.get('amountSplitsPerMember')
 			if (disabledMembers[memberId]) {
-				console.log('member enabled')
 				disabledMembers[memberId] = false
 				shareSplits[memberId] = 1
 			} else {
-				console.log('member disabled')
 				disabledMembers[memberId] = true
 				// Remove memberId from shareSplitsPerMember and amountSplitsPerMember if it already exists
 				delete shareSplits[memberId]
@@ -183,6 +181,7 @@ export default Ember.Component.extend({
 			}
 
       let groupTransaction = this.get('store').createRecord('groupTransaction', {
+				type: 'Normal',
         amount: amount,
         memo: this.get('memo').trim(),
         senders: [sender],

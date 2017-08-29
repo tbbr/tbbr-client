@@ -40,7 +40,6 @@ export default Ember.Component.extend({
   amountText: function() {
     const myTransaction = this.get('myTransaction')
     const memberUserId = this.get('member').get('user').get('id')
-    const curUserId = this.get('sessionUser.session').get('data').authenticated.user_id.toString()
     if (!myTransaction) {
       return ''
     }
@@ -50,6 +49,15 @@ export default Ember.Component.extend({
     } else {
       return 'You owe'
     }
+  }.property('myTransaction'),
+
+  doesCurUserOwe: function() {
+    const myTransaction = this.get('myTransaction')
+    const memberUserId = this.get('member').get('user').get('id')
+    if (!myTransaction) {
+      return false
+    }
+    return myTransaction.recipientId === memberUserId
   }.property('myTransaction'),
 
   curAmountText: function() {

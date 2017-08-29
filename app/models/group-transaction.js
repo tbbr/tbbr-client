@@ -1,6 +1,7 @@
 import DS from 'ember-data'
 
 export default DS.Model.extend({
+  type: DS.attr('string'),
   amount: DS.attr('number'),
   senders: DS.hasMany('user'),
   recipients: DS.hasMany('user'),
@@ -9,6 +10,9 @@ export default DS.Model.extend({
   senderSplitType: DS.attr('string'),
   recipientSplitType: DS.attr('string'),
   group: DS.belongsTo('group'),
-  createdAt: DS.attr('date'),
+  creator: DS.belongsTo('user'),
+  createdAt: DS.attr('Date', {
+    defaultValue: function() { return new Date() }
+  }),
   updatedAt: DS.attr('date')
 })

@@ -8,7 +8,6 @@ export default Ember.Component.extend({
   amountFloat: function() {
     let amount = this.get('amount')
     if (amount) {
-      console.log("Amount's changing:  ", amount)
       return (amount/100).toFixed(2)
     }
     return null

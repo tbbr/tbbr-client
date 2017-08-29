@@ -15,8 +15,9 @@
     {{/if}}
   </div>
   <div class="content-container">
-
-    {{#each group.groupMembers as |member|}}
+    <h3 class="section-header">Members</h3>
+    {{group-member-card member=currentUserMember transactions=transactionsForCurrentUser}}
+    {{#each groupMembersWithoutCurrentUser as |member|}}
       {{group-member-card member=member transactions=transactionsForCurrentUser}}
     {{/each}}
 
@@ -28,8 +29,9 @@
       </div>
     {{/if}}
 
+    <h3 class="section-header">Transactions</h3>
     {{#each groupTransactions as |gt|}}
-      {{group-transaction-card groupTransaction=gt}}
+      {{group-transaction-card groupTransaction=gt groupTransactionUpdated="groupTransactionUpdated"}}
     {{/each}}
   </div>
 {{else}}
