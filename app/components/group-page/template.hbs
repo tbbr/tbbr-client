@@ -15,24 +15,26 @@
     {{/if}}
   </div>
   <div class="content-container">
-    <h3 class="section-header">Members</h3>
-    {{group-member-card member=currentUserMember transactions=transactionsForCurrentUser}}
-    {{#each groupMembersWithoutCurrentUser as |member|}}
-      {{group-member-card member=member transactions=transactionsForCurrentUser}}
-    {{/each}}
-
     {{#if isGroupEmpty}}
       <div class="invite-user">
         <div class="invite-text">Your group looks empty</div>
         <div class="invite-text">Invite others with this link</div>
         <input class="input input--darker" value={{inviteUrl}} readonly="true" {{action "inviteClick"}}>
       </div>
-    {{/if}}
+    {{else}}
+      <h3 class="section-header">Members</h3>
+      {{group-member-card member=currentUserMember transactions=transactionsForCurrentUser}}
+      {{#each groupMembersWithoutCurrentUser as |member|}}
+        {{group-member-card member=member transactions=transactionsForCurrentUser}}
+      {{/each}}
 
-    <h3 class="section-header">Transactions</h3>
-    {{#each groupTransactions as |gt|}}
-      {{group-transaction-card groupTransaction=gt groupTransactionUpdated="groupTransactionUpdated"}}
-    {{/each}}
+      <h3 class="section-header">Transactions</h3>
+      {{#each groupTransactions as |gt|}}
+        {{group-transaction-card groupTransaction=gt groupTransactionUpdated="groupTransactionUpdated"}}
+      {{else}}
+        <div class="label center-align">No transactions found!</div>
+      {{/each}}
+    {{/if}}
   </div>
 {{else}}
   <div class="content-container center-align">
