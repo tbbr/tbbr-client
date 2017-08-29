@@ -1,1 +1,3 @@
-<h4>{{recipient.name}}</h4> {{format-currency recipientAmount}}
+{{#if recipientAmount}}
+  <h4>{{recipient.name}}</h4> {{format-currency recipientAmount}}
+{{/if}}
